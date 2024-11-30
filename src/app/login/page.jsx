@@ -15,6 +15,7 @@ export default function Page() {
     formState: { errors },
   } = useForm();
   const [loading, setLoading] = useState(false);
+  const [errorMessage,setErrorMessage] = useState("")
   const { dispatch } = useContext(AuthContex);
   const router = useRouter();
 
@@ -50,6 +51,11 @@ export default function Page() {
 <Typography variant="h5" className="mb-4 text-white text-center">
           Login
         </Typography>
+        {errorMessage && 
+          <Typography variant="p" className="mb-4 text-[15px] text-gray-500 text-center">
+          {errorMessage}
+        </Typography>
+        }
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             className=" border text-white"
