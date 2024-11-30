@@ -2,7 +2,7 @@
 import { TextField, Radio, RadioGroup, FormControlLabel, Autocomplete, FormLabel, FormControl, Box } from "@mui/material";
 import React, { useState, useContext, useEffect } from "react";
 import { AuthContex } from "@/context/AuthContex";
-import { postApiCall } from "@/api/fatchData";
+import { getApiCall, postApiCall } from "@/api/fatchData";
 import { useRouter } from "next/navigation";
 
 export default function HelpMeWith() {
@@ -10,6 +10,8 @@ export default function HelpMeWith() {
   const user = state?.user;
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [allLocations, setAllLocations] = useState(null);
+  
   const [errorMessage, setErrorMessage] = useState("");
   const [filter_options, set_filter_option] = useState({
     profession: "",
@@ -30,23 +32,26 @@ export default function HelpMeWith() {
     }
   }, [user]);
 
-  const dhakaDivisionAreas = [
-    "Dhaka City",
-    "Faridpur",
-    "Gazipur",
-    "Gopalganj",
-    "Kishoreganj",
-    "Madaripur",
-    "Manikganj",
-    "Munshiganj",
-    "Narayanganj",
-    "Narsingdi",
-    "Netrokona",
-    "Rajbari",
-    "Shariatpur",
-    "Tangail",
-    "Mymensingh",
-  ];
+  useEffect(()=> {
+const fatchData = async () =>{
+  setLoading(true);
+  try {
+    const response = await getApiCall(`location/get`);
+    if (response?.statusCode === 200) {
+      setAllLocations(response?.data?.map((s_location) => s_location?.name));
+    }
+  } catch (error) {
+    console.log("Error during registration:", error);
+    setErrorMessage(error?.message);
+  } finally {
+    setLoading(false);
+  }
+}
+
+fatchData()
+  },[])
+
+
 
   const professions = [
     "Software Engineer",
@@ -78,7 +83,7 @@ export default function HelpMeWith() {
   return (
     <>
       <div className="h-auto w-full">
-        {loading ? (
+        {loading || !allLocations ? (
           <div className="flex items-center justify-center h-[500px]">
             <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
           </div>
@@ -142,7 +147,7 @@ export default function HelpMeWith() {
                         area: newValue,
                       }))
                     }
-                    options={dhakaDivisionAreas}
+                    options={allLocations}
                     sx={{
                       width: 300,
                       "& .MuiInputBase-root": {

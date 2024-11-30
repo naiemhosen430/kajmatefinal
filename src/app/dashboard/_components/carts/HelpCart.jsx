@@ -11,17 +11,17 @@ export default function HelpCart({ title, status, location, need_type, professio
       </div>
 
       {/* Cart Body (Location and Type) */}
-      <div className="flex justify-between items-center text-gray-600 mb-4">
-        <div className="flex items-center">
+      <div className="flex justify-between items-center text-gray-100 mb-4">
+        <div className="flex w-6/12 text-[12px] items-center">
           <span>{location}</span>
         </div>
-        <div className="flex items-center">
+        <div className="flex w-2/12 text-[12px] items-center">
           <span>{status}</span>
         </div>
-        <div className="flex items-center">
+        <div className="flex w-2/12 text-[12px] items-center">
           <span>{need_type}</span>
         </div>
-        <div className="flex items-center">
+        <div className="flex w-2/12 text-[12px] items-center">
           <span>{type}</span>
         </div>
       </div>

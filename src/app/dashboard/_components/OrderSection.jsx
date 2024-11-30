@@ -44,7 +44,7 @@ export default function OrderSection() {
 
 
   return (
-    <Box className="w-full p-4">
+    <Box className="w-full p-4 pb-[50px]">
       {/* MUI Tabs */}
       <Tabs
         value={activeTab}

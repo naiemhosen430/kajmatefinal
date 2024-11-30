@@ -19,7 +19,7 @@ export default function Page() {
   return (
     <>
       <div className="lg:p-5 p-2">
-        <div className="lg:flex items-center p-5 bg-[#282828] rounded-lg">
+        <div className="lg:flex items-center p-5 bg-[#1B1212] rounded-lg">
         <div className="lg:w-[50%] flex items-center w-[100%]">
 
         <div className=" w-[20%]">
@@ -61,6 +61,17 @@ export default function Page() {
           </div>
         </div>
 
+        </div>
+
+        <div>
+        <div className=" w-[60%] px-5 py-2">
+            <h1 className="text-white text-[15px]">
+              {user?.tittle}
+            </h1>
+            <h4 className="text-blue-500 text-[10px]">
+              {user?.aboutme}
+            </h4>
+          </div>
         </div>
         <Analizing />
         <OrderSection />
