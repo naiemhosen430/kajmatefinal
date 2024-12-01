@@ -39,10 +39,10 @@ export default function Page() {
   };
 
   return (
-    <Container component="main" className="bg-none" maxWidth="xs">
+    <div className="container m-auto lg:w-4/12 lg:p-10 p-2">
     {loading ? 
-      <div class="flex items-center justify-center h-[500px]">
-    <div class="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+      <div className="flex items-center justify-center h-[500px]">
+    <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
 </div>
 
 :
@@ -96,7 +96,7 @@ export default function Page() {
             Login
           </Button>
         </form>
-        <Typography variant="body2" className="mt-2 text-center">
+        <Typography variant="body2" className="pt-5 text-center">
           Don't have an account?{" "}
           <Link href="/register" className="text-blue-600">
             Register
@@ -104,6 +104,6 @@ export default function Page() {
         </Typography>
       </div>
     }
-    </Container>
+    </div>
   );
 }

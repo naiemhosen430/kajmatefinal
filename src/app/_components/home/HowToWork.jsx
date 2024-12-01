@@ -10,7 +10,7 @@ export default function HowToWork() {
         </div>
         <div className="lg:w-6/12 w-12/12">
           <h1 className="text-[30px] mb-4">
-            How <span className="primary-green">EHM</span> work
+            How <span className="primary-green">Kajmate</span> work
           </h1>
           <ol className="list-decimal">
             <li className="flex items-center mb-3">

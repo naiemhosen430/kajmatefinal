@@ -1,8 +1,9 @@
 "use client"
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { Tabs, Tab, Box, Typography } from "@mui/material";
 import { getApiCall } from "@/api/fatchData";
 import HelpCart from "./carts/HelpCart";
+import { AuthContex } from "@/context/AuthContex";
 
 const fetchHelpData = async () => {
   try {
@@ -28,6 +29,7 @@ const fetchWorkHistoryData = async () => {
 export default function OrderSection() {
   const [activeTab, setActiveTab] = useState(0);
 
+  const { state } = useContext(AuthContex);
   const [helpData, setHelpData] = useState(null);
   const [workHistoryData, setWorkHistoryData] = useState(null);
 
@@ -38,13 +40,13 @@ export default function OrderSection() {
     } else if (activeTab === 1) {
       fetchWorkHistoryData().then((data) => setWorkHistoryData(data));
     }
-  }, [activeTab]);
+  }, [activeTab,state]);
 
 
 
 
   return (
-    <Box className="w-full p-4 pb-[50px]">
+    <Box className="w-full p-4">
       {/* MUI Tabs */}
       <Tabs
         value={activeTab}
@@ -68,7 +70,7 @@ export default function OrderSection() {
           }
           {helpData?.slice().reverse()?.map((single_mydata, i)=>(
 
-          <HelpCart key={i} title={single_mydata?.description} need_type={single_mydata?.need_type} profession={single_mydata?.profession} status={single_mydata?.status} location={single_mydata?.area} type={single_mydata?.type} />
+          <HelpCart key={i} title={single_mydata?.description} need_type={single_mydata?.need_type} id={single_mydata?._id} profession={single_mydata?.profession} status={single_mydata?.status} location={single_mydata?.area} type={single_mydata?.type} />
           ))}
 
           </Box>

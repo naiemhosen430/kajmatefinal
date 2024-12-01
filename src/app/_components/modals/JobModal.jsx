@@ -1,4 +1,6 @@
 import React from 'react'
+import { IoMdClose } from "react-icons/io";
+
 
 export default function JobModal({set_job,job}) {
   return (
@@ -17,7 +19,7 @@ export default function JobModal({set_job,job}) {
         <h2 className="text-gray-500">{job?.prodile?.location}</h2>
         </div>
         <div onClick={() => set_job(null)} className="w-[5%] cursor-pointer text-white">
-        close
+        <IoMdClose className="text-white text-[20px]" />
         </div>
     </div>
 

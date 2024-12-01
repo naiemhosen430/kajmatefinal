@@ -111,7 +111,7 @@ export default function Page() {
 
 
   return (
-    <div className="container m-auto p-10">
+    <div className="container m-auto lg:p-10 p-2">
       {loading ? (
         <div className="flex items-center justify-center h-[500px]">
           <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
@@ -120,8 +120,8 @@ export default function Page() {
         <div className="lg:flex">
           <div className="lg:w-6/12 hidden lg:block"></div>
           <div className="lg:w-6/12">
-            <Box sx={{ backgroundColor: "#284329", padding: 5, borderRadius: 2 }}>
-              <Typography component="h1" variant="h5" color="white" align="center">
+          <div elevation={3} className="p-6 mt-10 rounded-lg bg-[#284329] bg-gradient-to-r from-[#2d7c51] to-[#1a4d33] bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Cpath d=%22M0 0L2 2L4 0L6 2L8 0L10 2L10 10H0Z%22 fill=%22rgba(255, 255, 255, 0.2)%22/%3E%3C/svg%3E')]">
+          <Typography component="h1" variant="h5" color="white" align="center">
                 Register
               </Typography>
               {errorMessage && (
@@ -291,14 +291,14 @@ export default function Page() {
                   {loading ? "Registering..." : "Register"}
                 </Button>
 
-                <Typography variant="body2" className="mt-2 text-center">
+                <Typography variant="body2" className="pt-5 text-center">
                   Already have an account?{" "}
                   <Link href="/login" className="text-blue-600">
                     Login
                   </Link>
                 </Typography>
               </form>
-            </Box>
+            </div>
           </div>
         </div>
       )}

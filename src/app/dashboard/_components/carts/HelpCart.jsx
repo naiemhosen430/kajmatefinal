@@ -1,7 +1,10 @@
+import Link from "next/link";
 import React from "react";
 
-export default function HelpCart({ title, status, location, need_type, profession, type }) {
+export default function HelpCart({ title, status, location, need_type, profession, type,id }) {
   return (
+    <Link href={`/dashboard/job/${id}`}>
+
     <div className="w-full mx-auto p-4 bg-none border border-gray-500 my-2 rounded-lg shadow-md">
       {/* Cart Header (Title) */}
         <h2 className="text-2xl font-bold text-right text-white">{profession}</h2>
@@ -28,5 +31,6 @@ export default function HelpCart({ title, status, location, need_type, professio
 
 
     </div>
+    </Link>
   );
 }

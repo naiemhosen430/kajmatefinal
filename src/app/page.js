@@ -37,8 +37,8 @@ export default function Home() {
       </>
         :
 
-        <div class="flex items-center justify-center h-[500px]">
-    <div class="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+        <div className="flex items-center justify-center h-[500px]">
+    <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
 </div>
         }
       </>
