@@ -8,6 +8,8 @@ import { AuthContex } from "@/context/AuthContex";
 import IntroSlider from "./_components/home/IntroSlider";
 import Feed from "./_components/home/Feed";
 import { getCookie } from "cookies-next";
+import WhyChooseUs from "./_components/home/WhyChooseUs";
+import OwnerShip from "./_components/home/OwnerShip";
 
 export default function Home() {
   const token = getCookie("accesstoken");
@@ -50,6 +52,8 @@ export default function Home() {
 
         <Hero /> 
          <HowToWork />
+         <WhyChooseUs />
+        <OwnerShip />
       </div>
 
       </>

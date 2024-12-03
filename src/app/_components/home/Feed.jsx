@@ -30,6 +30,8 @@ export default function Feed() {
     fatchData();
   }, []); 
 
+  console.log(all_jobs)
+
   return (
     <>
       {filter_box_state && <FilterBar />}

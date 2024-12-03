@@ -10,10 +10,11 @@ export default function page() {
   let { id } = useParams();
 
   useEffect(() => {
+    console.log(id)
     const fetchData = async () => {
       try {
-        const data = await getApiCall(`help/myhelp/get/${id[0]}`);
-        setProfileInfo(data?.data);
+        const data = await getApiCall(`help/myhelp/get/${id}`);
+        setJobData(data?.data);
       } catch (error) {
         console.error("Error fetching profile data:", error);
       }
@@ -22,14 +23,16 @@ export default function page() {
     fetchData();
   }, [id]);
 
-  if (!jobData || !profileInfo){
+  console.log(jobData)
+
+  if (!jobData ){
     return       <div className="flex items-center justify-center h-[500px]">
-    <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+    <div className="w-16 h-16 m-auto border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
 </div>
   }
   return (
     <>
-       <div className="flex items-center pt-5">
+       <div className="flex items-center p-5">
         <button
           style={{ backgroundColor: page_type === "apply" ? "green" : "" }}
           onClick={() => set_page_type("apply")}
@@ -39,7 +42,7 @@ export default function page() {
         </button>
 
         <button
-          style={{ backgroundColor: page_type === "job" ? "green" : "" }}
+          style={{ backgroundColor: page_type === "details" ? "green" : "" }}
           onClick={() => set_page_type("details")}
           className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-white border border-gray-500 w-[100%] ml-2"
         >
@@ -49,7 +52,7 @@ export default function page() {
       </div>
 
         {/* Feed section */}
-        {feed_type === "apply" ? (
+        {page_type === "apply" ? (
         <div>
           {jobData?.applied_users ? (
             jobData?.applied_users.length > 0 ? (
@@ -59,7 +62,10 @@ export default function page() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-white p-10">Nobody applied</p>
+              <div>
+
+              <p className="text-center w-full text-white p-10">Nobody applied</p>
+              </div>
             )
           ) : loading ? (
             <div className="flex items-center justify-center h-[500px]">
@@ -69,9 +75,9 @@ export default function page() {
         </div>
       ) : (
         <div>
-        <div className="text-white py-5">
-        <h5 className="font-bold">{jobData?.profession}</h5>
-        <p>{jobData?.description}</p>
+        <div className="text-white p-5">
+        <h5 className="font-bold border-b border-gray-500">{jobData?.profession}</h5>
+        <p className="py-2">{jobData?.description}</p>
     </div>
         </div>
       )}

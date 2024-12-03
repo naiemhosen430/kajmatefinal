@@ -4,6 +4,7 @@ import React from "react";
 import { FaTachometerAlt, FaShoppingCart, FaSignOutAlt } from "react-icons/fa"; 
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { IoMdSettings } from "react-icons/io";
 
 const LeftBar = () => {
   const router = useRouter();
@@ -20,13 +21,23 @@ const LeftBar = () => {
       icon: <FaTachometerAlt />,
     },
     {
-      name: "Order",
-      href: "/order",
+      name: "Work",
+      href: "/dashboard/work",
       icon: <FaShoppingCart />,
     },
     {
+      name: "Payment",
+      href: "/dashboard/payment",
+      icon: <IoMdSettings />,
+    },
+    {
+      name: "Setting",
+      href: "/dashboard/setting",
+      icon: <IoMdSettings />,
+    },
+    {
       name: "Log out",
-      href: "", // No href, handled by onClick
+      href: "",
       icon: <FaSignOutAlt />,
       onClick: handleLogOut, 
     },
@@ -40,7 +51,7 @@ const LeftBar = () => {
       <div className="hidden lg:block bg-slate-800 lg:h-screen p-2">
         <ul>
           {manu_items?.map((s_menu, menu_index) => (
-            <li className=" w-full" key={menu_index}>
+            <li  className=" w-full" key={menu_index}>
               {/* Check if the item has an onClick handler for the logout */}
               {s_menu.onClick ? (
                 <button
@@ -68,10 +79,13 @@ const LeftBar = () => {
       <div className="lg:hidden bg-slate-800 p-2 fixed bottom-0 left-0 right-0">
         <ul className="flex justify-around">
           {manu_items?.map((s_menu, menu_index) => (
-            <li key={menu_index}>
+            <li style={{
+              display: s_menu.name === "Payment" ? "none" : s_menu.name === "Log out" ? "none" : "block"
+            }} key={menu_index}>
               {/* Handle the logout action in small screens similarly */}
               {s_menu.onClick ? (
                 <button
+                
                   className="flex flex-col items-center p-2 text-slate-400 hover:bg-slate-700"
                   onClick={s_menu.onClick}
                 >
@@ -80,6 +94,7 @@ const LeftBar = () => {
                 </button>
               ) : (
                 <Link
+         
                   className="flex flex-col items-center p-2 text-slate-400 hover:bg-slate-700"
                   href={s_menu.href}
                 >

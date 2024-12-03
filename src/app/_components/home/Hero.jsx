@@ -3,6 +3,8 @@ import React from "react";
 
 export default function Hero() {
   return (
+    <div className="bg-[#d4eff0]">
+
     <div className="background-color rounded-br-[200px] lg:p-[100px] p-[20px]">
       <div className="container m-auto">
         <h1 className="lg:text-[40px] text-[20px] text-center">
@@ -22,6 +24,7 @@ export default function Hero() {
           </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 }

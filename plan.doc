@@ -1,0 +1,138 @@
+supper admin:
+    1: approve user
+    2: approve job
+    3: process payment
+    4: customer support 
+    5: subcription
+    6: work proces review and take action
+
+client:
+    1: create profile
+    2: complete profile 
+    3: post job (and payment), (boost your job to reach more skilled people)
+    4: communicate candedate
+    5: choose candedate and (and payment)
+    6: comple work onsite, remote or hybride
+    7: during work process time chat if needed 
+    8: complte or close work 
+    9: review person and kajmate 
+    10: every proces will notify in kajmate notification and email
+
+worker:
+    1: create profile
+    2: complete profile (boost profile to get hired soon)
+    3: find job by search or match area 
+    4: apply job (boost your apply to rank in the client list)
+    5: get response from client (can be agree or dicliend)
+    6: accept agree req and start work 
+    7: during work process time chat if needed 
+    8: complete work and get response from client  
+    9: get paid 
+    10: withdaraw earning  
+    11: every proces will notify in kajmate notification and email
+
+---------------------------------------------------------------------------
+-                            project plan                                 -
+---------------------------------------------------------------------------
+# user will get email job notification based area and skill
+# online offline or hibride job oppotunitys for small or big people with any skill 
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+-                            software plan (frontend)                     -
+---------------------------------------------------------------------------
+1: home page:
+    condition rendering,
+        if logedin:-------------- done
+            add job section, -------------- done
+            sytem intro slider, -------------- done
+            feed type,-------------- done
+            filter, -------------- done
+            feed body -------------- done
+        if not logedin:
+            system intro hero with join now button, -------------- done
+            how work the system,  -------------- done
+            why choose us,  -------------- done
+            some portfolio of previous succes, 
+            partnership, 
+            owner intro, 
+            subcribe newslatter 
+2: view job:
+    only logedin, -------------- done
+        client logo name location header,-------------- done
+        vacency,-------------- done
+        location,-------------- done
+        description,-------------- done
+        apply and save for later button,-------------- done
+
+2: view profile:
+    public,
+        cover phone,-------------- done
+        profile photo,-------------- done
+        profession and location,-------------- done
+        ratting and total job done,-------------- done
+        about,-------------- done
+        experience,
+        education,
+        client reviews,
+        skills
+
+3: mesages: -------------- done
+    only logedin,-------------- done
+        filter bar,-------------- done
+        mesages cart with photo, name, last message, time-------------- done
+
+4: notification:-------------- done
+    only logedin,-------------- done
+        filter bar,-------------- done
+        notification cart with photo, title, description (short), time -------------- done
+
+5: register:-------------- done
+    only not logedin,-------------- done
+        name, phone, email, location, password -------------- done
+
+6: login:-------------- done
+    only not logedin,-------------- done
+        email and password-------------- done
+
+7: dashboard:-------------- done
+    only logedin,-------------- done
+        profile header,-------------- done
+        about,-------------- done
+        analizing,-------------- done
+        feed filter bar,-------------- done
+        feed content,-------------- done
+
+8: view client job details:-------------- done
+    only logedin client,-------------- done
+        filter bar,-------------- done
+        job detail withe title and description,-------------- done
+        applied profile cart with name, photo applied date, profession
+
+9: payment:-------------- done
+    only logedin,-------------- done
+        account balance,-------------- done
+        withdraw button,-------------- done
+        withdraw history,-------------- done
+
+10: job view worker:
+    only logedin worker,
+        filter bar,
+        job details with title description,
+        work proces with action,
+
+11: setting:
+    only logedin,
+        recieve mail for new job,-------------- done
+        multiple device allow,-------------- done
+        blocked account,-------------- done
+        logedin history,-------------- done
+        account action,-------------- done
+        report,-------------- done
+        support and live chat,-------------- done

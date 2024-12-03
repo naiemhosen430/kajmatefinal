@@ -21,11 +21,9 @@ export const config = {
   matcher: [
     "/login",
     "/register",
-    "/friend",
-    "/message",
-    "/myprofile",
+    // "/message",
     "/Search",
     "/setting",
-    "/dashboard",
+    // "/dashboard",
   ],
 };

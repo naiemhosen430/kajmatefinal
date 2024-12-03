@@ -4,6 +4,8 @@ import React from "react";
 export default function HowToWork() {
   return (
     <>
+    <div className="bg-[#d4eff0]">
+
       <div className="container m-auto lg:flex items-center p-5">
         <div className="lg:w-6/12 w-12/12">
           <img className="w-full" src="/images/howtowork.png" alt="no image" />
@@ -36,6 +38,7 @@ export default function HowToWork() {
           </ol>
         </div>
       </div>
+    </div>
     </>
   );
 }

@@ -5,6 +5,8 @@ import Header from "./_components/shared/Header";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
 import AuthContexProvider from "@/context/AuthContex";
+import MessageContextProvider from "@/context/MessageContext";
+import NotificationContextProvider from "@/context/NotificationContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,12 +33,17 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthContexProvider>
+        <NotificationContextProvider>
+        <MessageContextProvider>
+
           <ThemeProvider theme={theme}>
             <div className="">
               <Header />
               {children}
             </div>
           </ThemeProvider>
+        </MessageContextProvider>
+        </NotificationContextProvider>
         </AuthContexProvider>
       </body>
     </html>
