@@ -1,8 +1,9 @@
 import React from 'react'
 import { IoMdClose } from "react-icons/io";
-
+import Link from "next/link"
 
 export default function JobModal({set_job,job}) {
+  console.log(job)
   return (
     <>
     <div style={{
@@ -12,11 +13,11 @@ export default function JobModal({set_job,job}) {
 <div className="lg:rounded-r-[20px] lg:p-[20px] p-5 rounded-t-[20px] lg:w-6/12 w-full lg:h-screen h-[90vh] overflow-hidden overflow-y-auto bg-[#023020]">
     <div className="flex border-b pb-2 border-gray-500">
         <div className="w-[10%]">
-            <img src={job?.prodile?.profilephoto} alt={"no img"} />
+            <img  className="w-[50px] h-[50px] rounded-full m-auto" src={job?.profile?.profilephoto} alt={"no img"} />
         </div>
-        <div className="w-[85%]">
-        <h2 className="text-white">{job?.prodile?.fullname}</h2>
-        <h2 className="text-gray-500">{job?.prodile?.location}</h2>
+        <div className="w-[85%] px-5">
+        <h2 className="text-white">{job?.profile?.fullname}</h2>
+        <h2 className="text-gray-100">{job?.profile?.location}</h2>
         </div>
         <div onClick={() => set_job(null)} className="w-[5%] cursor-pointer text-white">
         <IoMdClose className="text-white text-[20px]" />
@@ -30,6 +31,7 @@ export default function JobModal({set_job,job}) {
 
     <div className="flex ">
         <div className="w-[50%] mr-2">
+        <Link href={`/job/apply/${job?._id}`}>
         <button
     style={{ backgroundColor: "green" }}
     // onClick={() => set_feed_type("worker")}
@@ -37,6 +39,7 @@ export default function JobModal({set_job,job}) {
   >
     Apply
   </button>
+  </Link>
         </div>
 
         <div className="w-[50%] ml-2">
