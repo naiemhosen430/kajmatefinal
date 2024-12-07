@@ -10,7 +10,6 @@ export default function page() {
   let { id } = useParams();
 
   useEffect(() => {
-    console.log(id)
     const fetchData = async () => {
       try {
         const data = await getApiCall(`help/myhelp/get/${id}`);
@@ -23,7 +22,7 @@ export default function page() {
     fetchData();
   }, [id]);
 
-  console.log(jobData)
+console.log(jobData)
 
   if (!jobData ){
     return       <div className="flex items-center justify-center h-[500px]">
@@ -53,12 +52,12 @@ export default function page() {
 
         {/* Feed section */}
         {page_type === "apply" ? (
-        <div>
+        <div className="p-2">
           {jobData?.applied_users ? (
             jobData?.applied_users.length > 0 ? (
               jobData?.applied_users.map((s_user, i) => (
                 <div key={i}>
-                  <AppliedPersonCart data={s_user} />
+                  <AppliedPersonCart job_id={jobData?._id} data={s_user} />
                 </div>
               ))
             ) : (

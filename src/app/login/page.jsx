@@ -27,10 +27,11 @@ export default function Page() {
         setCookie("accesstoken", response?.token);
         dispatch({ type: "ADD_AUTH_DATA", payload: response?.data || null });
         router.push("/dashboard", { scroll: true });
+        window.location.reload();
       } else {
       }
     } catch (error) {
-      console.log("Error during registration:", error);
+      console.error("Error during registration:", error);
       setErrorMessage(error?.message);
       // Manage error state
     } finally {

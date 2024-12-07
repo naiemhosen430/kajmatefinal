@@ -21,7 +21,7 @@ export default function page() {
           } else {
           }
         } catch (error) {
-          console.log("Error during registration:", error);
+          console.error("Error during registration:", error);
           setErrorMessage(error?.message);
           // Manage error state
         } finally {

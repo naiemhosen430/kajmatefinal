@@ -37,8 +37,8 @@ export default function RootLayout({ children }) {
         <MessageContextProvider>
 
           <ThemeProvider theme={theme}>
-            <div className="">
               <Header />
+            <div className="px-2">
               {children}
             </div>
           </ThemeProvider>

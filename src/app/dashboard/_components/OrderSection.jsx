@@ -9,10 +9,9 @@ const fetchHelpData = async () => {
   try {
     
     const response = await getApiCall("help/get-helps");
-    console.log({here:response})
     return response?.data
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 };
 
@@ -21,7 +20,7 @@ const fetchWorkHistoryData = async () => {
     const response = await getApiCall("help/get-applys");
   return response?.data
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 
 };
@@ -34,7 +33,6 @@ export default function OrderSection() {
   const [workHistoryData, setWorkHistoryData] = useState(null);
 
   useEffect(() => {
-    console.log(activeTab)
     if (activeTab === 0) {
       fetchHelpData().then((data) => setHelpData(data));
     } else if (activeTab === 1) {
@@ -83,7 +81,7 @@ export default function OrderSection() {
           }
           {workHistoryData?.slice().reverse()?.map((single_mydata, i)=>(
 
-           <HelpCart key={i} title={single_mydata?.description} need_type={single_mydata?.need_type} profession={single_mydata?.profession} status={single_mydata?.status} location={single_mydata?.area} type={single_mydata?.type} />
+            <HelpCart key={i} title={single_mydata?.description} need_type={single_mydata?.need_type} id={single_mydata?._id} profession={single_mydata?.profession} status={single_mydata?.status} location={single_mydata?.area} type={single_mydata?.type} />
           ))}
           </Box>
         )}

@@ -8,7 +8,6 @@ export default function page() {
   let { id } = useParams();
 
   useEffect(() => {
-    console.log(id)
     const fetchData = async () => {
       try {
         const data = await getApiCall(`help/public/get/${id}`);

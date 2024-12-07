@@ -30,6 +30,7 @@ export default function MessageContextProvider({ children }) {
         try {
           const response = await getApiCall("message/getallmessage");
           if (response?.statusCode === 200 && response?.data) {
+            console.log(response?.data)
             dispatch({ type: "ADD_MESSAGES", payload: response?.data });
           }
         } catch (error) {}

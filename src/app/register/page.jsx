@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { AuthContex } from "@/context/AuthContex"; 
 import { postApiCall } from "@/api/fatchData"; 
-import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { setCookie } from "cookies-next";
 import locationData from "@/app/data/location.json"; 
 
 // Function to extract countries from the location data
@@ -99,6 +99,7 @@ export default function Page() {
         setCookie("accesstoken", response?.token);
         dispatch({ type: "ADD_AUTH_DATA", payload: response?.data || null });
         router.push("/dashboard", { scroll: true });
+        window.location.reload();
       } else {
         setErrorMessage("Registration failed. Please try again.");
       }

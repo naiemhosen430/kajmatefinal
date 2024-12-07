@@ -9,10 +9,9 @@ const fetchHelpData = async () => {
   try {
     
     const response = await getApiCall("help/get-helps");
-    console.log({here:response})
     return response?.data
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 };
 
@@ -21,7 +20,7 @@ const fetchWorkHistoryData = async () => {
     const response = await getApiCall("help/get-applys");
   return response?.data
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 
 };
@@ -34,7 +33,6 @@ export default function page() {
   const [workHistoryData, setWorkHistoryData] = useState(null);
 
   useEffect(() => {
-    console.log(activeTab)
     if (activeTab === 0) {
       fetchHelpData().then((data) => setHelpData(data));
     } else if (activeTab === 1) {

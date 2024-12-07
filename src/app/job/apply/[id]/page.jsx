@@ -1,44 +1,43 @@
-
-
 "use client"
-import { getApiCall, postApiCall } from '@/api/fatchData'; // Assuming postApiCall is imported for API POST requests
+import { getApiCall, postApiCall } from '@/api/fatchData';
 import { AuthContex } from '@/context/AuthContex';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, CircularProgress, TextField, Snackbar } from '@mui/material'; // MUI components for UI
+import { Button, CircularProgress, TextField, Snackbar } from '@mui/material';
 
 export default function Page() {
   const [jobData, setJobData] = useState(null);
   const { state } = useContext(AuthContex);
+  const router = useRouter()
   const user = state?.user;
   let { id } = useParams();
 
   const [formData, setFormData] = useState({
-    fullName: '',
+    fullname: '',
     phone: '',
     email: '',
+    applier_id: '',
     expectedSalary: '',
-    jod_id:id
+    job_id: id
   });
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  useEffect(()=>{
-    setFormData((predata_app)=>{
+  useEffect(() => {
+    setFormData((predata_app) => {
       return {
         ...predata_app,
         fullname: user?.fullname,
         email: user?.email,
         phone: user?.phone,
-        appier_id: user?._id,
+        applier_id: user?._id,
       }
     })
-  },[user])
+  }, [user])
 
   useEffect(() => {
-    console.log(id);
     const fetchData = async () => {
       try {
         const data = await getApiCall(`help/public/get/${id}`);
@@ -63,14 +62,17 @@ export default function Page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(null); // Reset error before submitting
+    setError(null);
 
     try {
-      const response = await postApiCall("help/apply/1234", formData);
-      if (response.success) {
+      const response = await postApiCall(`help/apply/${formData?.job_id}`, formData);
+      if (response?.data){
+
         setSuccess(true);
+        router.push("/thankyou/Successfully applied on the job", { scroll: true });
       } else {
-        setError("Failed to apply. Please try again.");
+
+        setError("Failed to apply. Try again.");
       }
     } catch (err) {
       console.error("Error during application:", err);
@@ -116,151 +118,149 @@ export default function Page() {
       </div>
 
       <form onSubmit={handleSubmit}>
-  <div className="my-4">
-    <TextField
-      fullWidth
-      style={{
-        outline: "1px solid white", // Outline when focused
-      }}
-      label="Full Name"
-      sx={{
-        color: "white",
-        "& .MuiInputBase-root": {
-          borderColor: "white", // Set border color to white
-        },
-        "& .MuiInputBase-input": {
-          color: "white", // Input text color
-        },
-        "& .MuiInputLabel-root": {
-          color: "white", // Label color
-        },
-        "&:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white", // Border color on hover
-        },
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white", // Border color on focus
-        },
-      }}
-      name="fullName"
-      value={formData.fullName}
-      onChange={handleInputChange}
-      variant="outlined"
-      margin="normal"
-      required
-    />
-    <TextField
-      fullWidth
-      style={{
-        outline: "1px solid white", // Outline when focused
-      }}
-      label="Phone"
-      sx={{
-        color: "white",
-        "& .MuiInputBase-root": {
-          borderColor: "white", // Set border color to white
-        },
-        "& .MuiInputBase-input": {
-          color: "white", // Input text color
-        },
-        "& .MuiInputLabel-root": {
-          color: "white", // Label color
-        },
-        "&:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white", // Border color on hover
-        },
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white", // Border color on focus
-        },
-      }}
-      name="phone"
-      value={formData.phone}
-      onChange={handleInputChange}
-      variant="outlined"
-      margin="normal"
-      required
-    />
-    <TextField
-      fullWidth
-      style={{
-        outline: "1px solid white", // Outline when focused
-      }}
-      label="Email"
-      name="email"
-      value={formData.email}
-      onChange={handleInputChange}
-      variant="outlined"
-      margin="normal"
-      sx={{
-        color: "white",
-        "& .MuiInputBase-root": {
-          borderColor: "white", // Set border color to white
-        },
-        "& .MuiInputBase-input": {
-          color: "white", // Input text color
-        },
-        "& .MuiInputLabel-root": {
-          color: "white", // Label color
-        },
-        "&:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white", // Border color on hover
-        },
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white", // Border color on focus
-        },
-      }}
-      required
-      readOnly
-      type="email"
-    />
-    <TextField
-      fullWidth
-      style={{
-        outline: "1px solid white", // Outline when focused
-      }}
-      sx={{
-        color: "white",
-        "& .MuiInputBase-root": {
-          borderColor: "white", // Set border color to white
-        },
-        "& .MuiInputBase-input": {
-          color: "white", // Input text color
-        },
-        "& .MuiInputLabel-root": {
-          color: "white", // Label color
-        },
-        "&:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white", // Border color on hover
-        },
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white", // Border color on focus
-        },
-      }}
-      label="Expected Salary"
-      name="expectedSalary"
-      value={formData.expectedSalary}
-      onChange={handleInputChange}
-      variant="outlined"
-      margin="normal"
-      required
-      type="number"
-    />
-  </div>
+        <div className="my-4">
+          <TextField
+            fullWidth
+            style={{
+              outline: "1px solid white",
+            }}
+            label="Full Name"
+            sx={{
+              color: "white",
+              "& .MuiInputBase-root": {
+                borderColor: "white",
+              },
+              "& .MuiInputBase-input": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+              },
+            }}
+            name="fullname"
+            value={formData.fullname}
+            onChange={handleInputChange}
+            variant="outlined"
+            margin="normal"
+            required
+          />
+          <TextField
+            fullWidth
+            style={{
+              outline: "1px solid white",
+            }}
+            label="Phone"
+            sx={{
+              color: "white",
+              "& .MuiInputBase-root": {
+                borderColor: "white",
+              },
+              "& .MuiInputBase-input": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+              },
+            }}
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            variant="outlined"
+            margin="normal"
+            required
+          />
+          <TextField
+            fullWidth
+            style={{
+              outline: "1px solid white",
+            }}
+            label="Email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            variant="outlined"
+            margin="normal"
+            sx={{
+              color: "white",
+              "& .MuiInputBase-root": {
+                borderColor: "white",
+              },
+              "& .MuiInputBase-input": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+              },
+            }}
+            required
+            readOnly
+            type="email"
+          />
+          <TextField
+            fullWidth
+            style={{
+              outline: "1px solid white",
+            }}
+            sx={{
+              color: "white",
+              "& .MuiInputBase-root": {
+                borderColor: "white",
+              },
+              "& .MuiInputBase-input": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+              },
+            }}
+            label="Expected Salary"
+            name="expectedSalary"
+            value={formData.expectedSalary}
+            onChange={handleInputChange}
+            variant="outlined"
+            margin="normal"
+            required
+            type="number"
+          />
+        </div>
 
-  <div className="flex justify-end">
-    <Button
-      type="submit"
-      variant="contained"
-      color="primary"
-      disabled={loading}
-      className="w-full"
-    >
-      {loading ? <CircularProgress size={24} /> : "Apply"}
-    </Button>
-  </div>
-</form>
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={loading}
+            className="w-full"
+          >
+            {loading ? <CircularProgress size={24} /> : "Apply"}
+          </Button>
+        </div>
+      </form>
 
-
-      {/* Success message */}
       <Snackbar
         open={success}
         autoHideDuration={6000}
@@ -268,7 +268,6 @@ export default function Page() {
         message="Application submitted successfully"
       />
 
-      {/* Error message */}
       {error && (
         <Snackbar
           open={!!error}

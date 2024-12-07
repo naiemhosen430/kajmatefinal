@@ -3,7 +3,6 @@ import { IoMdClose } from "react-icons/io";
 import Link from "next/link"
 
 export default function JobModal({set_job,job}) {
-  console.log(job)
   return (
     <>
     <div style={{
@@ -17,7 +16,7 @@ export default function JobModal({set_job,job}) {
         </div>
         <div className="w-[85%] px-5">
         <h2 className="text-white">{job?.profile?.fullname}</h2>
-        <h2 className="text-gray-100">{job?.profile?.location}</h2>
+        <h2 className="text-gray-100 text-[12px]">{job?.profile?.location}</h2>
         </div>
         <div onClick={() => set_job(null)} className="w-[5%] cursor-pointer text-white">
         <IoMdClose className="text-white text-[20px]" />
@@ -26,7 +25,7 @@ export default function JobModal({set_job,job}) {
 
     <div className="text-white py-5">
         <h5 className="font-bold">{job?.profession}</h5>
-        <p>{job?.description}</p>
+        <p className='text-[12px]'>{job?.description}</p>
     </div>
 
     <div className="flex ">
