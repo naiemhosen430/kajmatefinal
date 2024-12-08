@@ -17,6 +17,7 @@ export default function Feed() {
       setLoading(true);
       try {
         const response = await getApiCall(`help/public/get`);
+        console.log(response)
         if (response?.statusCode === 200) {
           set_all_jobs(response?.data);
         }

@@ -66,13 +66,11 @@ export default function Page() {
 
     try {
       const response = await postApiCall(`help/apply/${formData?.job_id}`, formData);
-      if (response?.data){
-
+      if (response?.data) {
         setSuccess(true);
         router.push("/thankyou/Successfully applied on the job", { scroll: true });
       } else {
-
-        setError("Failed to apply. Try again.");
+        setError(response?.message || "Failed to apply. Try again.");
       }
     } catch (err) {
       console.error("Error during application:", err);
@@ -81,6 +79,8 @@ export default function Page() {
       setLoading(false);
     }
   };
+
+  console.log(jobData)
 
   if (!jobData) {
     return (
@@ -91,8 +91,8 @@ export default function Page() {
   }
 
   return (
-    <div className="lg:rounded-r-[20px] container m-auto lg:p-[20px] p-5 py-10 rounded-t-[20px] w-full lg:h-screen h-[90vh] overflow-hidden overflow-y-auto bg-[#023020]">
-      <div className="flex border-b pb-2 border-gray-500">
+    <div className="lg:rounded-r-[20px] lg:w-6/12  container m-auto lg:p-[20px] p-5 py-10 rounded-t-[20px] w-full lg:h-screen h-[90vh] overflow-hidden overflow-y-auto bg-[#023020]">
+      <div className="flex m-auto border-b pb-2 border-gray-500">
         <div className="w-[12%]">
           <img
             src={jobData?.profile?.profilephoto || "default.jpeg"}
@@ -103,18 +103,18 @@ export default function Page() {
           <h2 className="text-white">{jobData?.profile?.fullname || "no name"}</h2>
           <h2 className="text-gray-500">{jobData?.profile?.location || "no location"}</h2>
         </div>
-        <div className="w-[18%] mr-2">
+        {/* <div className="w-[18%] mr-2">
           <Button
             style={{ backgroundColor: "green" }}
             className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500 mr-2"
           >
             Contact
           </Button>
-        </div>
+        </div> */}
       </div>
 
       <div className="text-white py-5">
-        <h5 className="font-bold">{jobData?.title || "no profession"}</h5>
+        <h5 className="font-bold">{jobData?.profession || "no profession"}</h5>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -134,7 +134,7 @@ export default function Page() {
                 color: "white",
               },
               "& .MuiInputLabel-root": {
-                color: "white",
+                color: "white", // set label text color to white
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
                 borderColor: "white",
@@ -149,6 +149,7 @@ export default function Page() {
             variant="outlined"
             margin="normal"
             required
+            disabled
           />
           <TextField
             fullWidth
@@ -165,7 +166,7 @@ export default function Page() {
                 color: "white",
               },
               "& .MuiInputLabel-root": {
-                color: "white",
+                color: "white", // set label text color to white
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
                 borderColor: "white",
@@ -180,6 +181,7 @@ export default function Page() {
             variant="outlined"
             margin="normal"
             required
+            disabled
           />
           <TextField
             fullWidth
@@ -201,7 +203,7 @@ export default function Page() {
                 color: "white",
               },
               "& .MuiInputLabel-root": {
-                color: "white",
+                color: "white", // set label text color to white
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
                 borderColor: "white",
@@ -211,13 +213,13 @@ export default function Page() {
               },
             }}
             required
-            readOnly
+            disabled
             type="email"
           />
           <TextField
             fullWidth
             style={{
-              outline: "1px solid white",
+              // outline: "1px solid white",
             }}
             sx={{
               color: "white",
@@ -228,7 +230,7 @@ export default function Page() {
                 color: "white",
               },
               "& .MuiInputLabel-root": {
-                color: "white",
+                color: "white", // set label text color to white
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
                 borderColor: "white",
