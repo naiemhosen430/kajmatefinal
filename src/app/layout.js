@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
 
           <ThemeProvider theme={theme}>
               <Header />
-            <div className="px-2">
+            <div className="px-0">
               {children}
             </div>
           </ThemeProvider>

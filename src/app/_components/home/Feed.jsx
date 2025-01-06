@@ -35,7 +35,7 @@ export default function Feed() {
 
   return (
     <>
-      {filter_box_state && <FilterBar />}
+      {filter_box_state && <FilterBar set_filter_box_state={set_filter_box_state} filter_options={filter_options} set_filter_option={set_filter_option} allAreas={allAreas} professions={professions} onApply={onApply} onClose={onClose} />}
 
       <div className="flex items-center pt-5">
         <button

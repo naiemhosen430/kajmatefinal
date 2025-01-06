@@ -3,6 +3,8 @@ import { Autocomplete, TextField, Button, Box, Typography } from '@mui/material'
 
 export default function FilterBar({ filter_options, set_filter_option, allAreas, professions, onApply, onClose }) {
   return (
+    <div className="fixed h-screen w-screen top-0 left-0 bg-black/50 flex justify-end">
+
     <Box
       sx={{
         display: 'flex',
@@ -22,7 +24,7 @@ export default function FilterBar({ filter_options, set_filter_option, allAreas,
       {/* Location Filter */}
       <Autocomplete
         disablePortal
-        value={filter_options.area}
+        value={filter_options?.area}
         onChange={(event, newValue) =>
           set_filter_option((prev_options) => ({
             ...prev_options,
@@ -69,7 +71,7 @@ export default function FilterBar({ filter_options, set_filter_option, allAreas,
       {/* Profession Filter */}
       <Autocomplete
         disablePortal
-        value={filter_options.profession}
+        value={filter_options?.profession}
         onChange={(event, newValue) =>
           set_filter_option((prev_options) => ({
             ...prev_options,
@@ -143,5 +145,7 @@ export default function FilterBar({ filter_options, set_filter_option, allAreas,
         </Button>
       </Box>
     </Box>
+    </div>
+
   );
 }

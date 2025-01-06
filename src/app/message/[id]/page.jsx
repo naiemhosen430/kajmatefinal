@@ -1,4 +1,5 @@
 "use client"
+import socket from '@/api/connectIo';
 import { getApiCall, postApiCall } from '@/api/fatchData';
 import { AuthContex } from '@/context/AuthContex';
 import { MessageContext } from '@/context/MessageContext';
@@ -23,18 +24,10 @@ export default function Page() {
 
   const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
-      try {
-        const response = await postApiCall('message/send', {
-          message: newMessage,
-          job_id: message_data?.job_id,
-          to_user_id: message_data?.ids[1], // Assuming you're messaging the second user in the `ids` array
-        });
-        // Handle response (e.g., add the message to the state)
-        setNewMessage('');
-        // Optionally, refetch or update the message list
-      } catch (error) {
-        console.error("Error sending message:", error);
-      }
+      console.log(message_data)
+      // socket.emit("messagesent",{
+      //   mstContent, ownerId,reciverid, sendtime, status, msgid
+      // })
     }
   };
 
