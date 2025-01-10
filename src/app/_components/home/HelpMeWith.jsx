@@ -3,7 +3,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { AuthContex } from "@/context/AuthContex";
 import { getApiCall, postApiCall } from "@/api/fatchData";
 import { useRouter } from "next/navigation";
-import  JoditEditor  from "jodit-react"; 
+import dynamic from 'next/dynamic';
+
+// Dynamically import Jodit Editor
+const JoditEditor = dynamic(() => import('jodit-react'), {
+  ssr: false, // Disable server-side rendering for this component
+});
 
 export default function HelpMeWith() {
   const { state } = useContext(AuthContex);
@@ -157,7 +162,7 @@ export default function HelpMeWith() {
                     }
                     config={{
                       placeholder: "Provide details of your job...",
-                      height: 500
+                      height: 500,
                     }}
                   />
                 </div>
