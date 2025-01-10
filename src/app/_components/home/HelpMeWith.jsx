@@ -1,57 +1,53 @@
 "use client";
-import { TextField, Radio, RadioGroup, FormControlLabel, Autocomplete, FormLabel, FormControl, Box } from "@mui/material";
 import React, { useState, useContext, useEffect } from "react";
 import { AuthContex } from "@/context/AuthContex";
 import { getApiCall, postApiCall } from "@/api/fatchData";
 import { useRouter } from "next/navigation";
+import  JoditEditor  from "jodit-react"; 
 
 export default function HelpMeWith() {
   const { state } = useContext(AuthContex);
   const user = state?.user;
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [allLocations, setAllLocations] = useState(null);
-  
+  const [allLocations, setAllLocations] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [filter_options, set_filter_option] = useState({
     profession: "",
     area: "",
     description: "",
     owner_id: "",
-    need_type: ""
+    need_type: "",
+    end_date: "",
   });
+  const [step, setStep] = useState(1); // To handle steps
 
   useEffect(() => {
     if (user) {
-      set_filter_option((predata) => {
-        return {
-          ...predata,
-          owner_id: user?._id
-        };
-      });
+      set_filter_option((predata) => ({
+        ...predata,
+        owner_id: user?._id,
+      }));
     }
   }, [user]);
 
-  useEffect(()=> {
-const fatchData = async () =>{
-  setLoading(true);
-  try {
-    const response = await getApiCall(`location/get`);
-    if (response?.statusCode === 200) {
-      setAllLocations(response?.data?.map((s_location) => s_location?.name));
-    }
-  } catch (error) {
-    console.log("Error during registration:", error);
-    setErrorMessage(error?.message);
-  } finally {
-    setLoading(false);
-  }
-}
-
-fatchData()
-  },[])
-
-
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await getApiCall(`location/get`);
+        if (response?.statusCode === 200) {
+          setAllLocations(response?.data?.map((s_location) => s_location?.name));
+        }
+      } catch (error) {
+        console.log("Error during registration:", error);
+        setErrorMessage(error?.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   const professions = [
     "Software Engineer",
@@ -63,12 +59,10 @@ fatchData()
     "Musician",
   ];
 
-  const createHelo = async (data) => {
-    console.log("hello");
+  const createHelo = async () => {
     setLoading(true);
     try {
-      const response = await postApiCall(`help/create`, filter_options);
-      console.log(response?.statusCode);
+      const response = await postApiCall("help/create", filter_options);
       if (response?.statusCode === 200) {
         router.push("/dashboard", { scroll: true });
       }
@@ -81,265 +75,214 @@ fatchData()
   };
 
   return (
-    <>
-      <div className="h-auto w-full">
-        {loading || !allLocations ? (
-          <div className="flex items-center justify-center h-[500px]">
-            <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
-          </div>
-        ) : (
-          <>
-            <div className="flex items-center py-[40px] justify-center">
-              <div className="lg:flex items-center justify-center">
-                <h1 className="text-white lg:text-[25px] text-[15px] font-[700] mr-2">
-                  {!filter_options.profession
-                    ? "Help Me With"
-                    : !filter_options.area
-                    ? "Select Area"
-                    : ""}
-                  {filter_options.profession && filter_options.area && "Write What needs"}
-                </h1>
+    <div className="w-full h-auto p-6 bg-gray-800 text-white">
+      {loading || !allLocations.length ? (
+        <div className="flex items-center justify-center h-[500px]">
+          <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+        </div>
+      ) : (
+        <>
+          <div className="flex items-center justify-center py-8">
+            <div className="lg:w-8/12 w-full p-6 bg-gray-700 rounded-lg shadow-xl">
+              <h1 className="text-center text-xl lg:text-2xl font-semibold mb-6">
+                {step === 1 && "Step 1: Select Profession"}
+                {step === 2 && "Step 2: Select Area"}
+                {step === 3 && "Step 3: Write Description"}
+                {step === 4 && "Step 4: Set Available Time & Priority"}
+              </h1>
 
-                {/* Profession Autocomplete */}
-                {!filter_options.profession && (
-                  <Autocomplete
-                    disablePortal
+              {/* Profession Selection */}
+              {step === 1 && (
+                <div className="mb-4">
+                  <label htmlFor="profession" className="block text-lg font-medium mb-2">
+                    Select Profession
+                  </label>
+                  <input
+                    list="professions"
+                    id="profession"
                     value={filter_options.profession}
-                    onChange={(event, newValue) =>
+                    onChange={(e) =>
                       set_filter_option((prev_options) => ({
                         ...prev_options,
-                        profession: newValue,
+                        profession: e.target.value,
                       }))
                     }
-                    options={professions}
-                    sx={{
-                      width: 300,
-                      "& .MuiInputBase-root": {
-                        color: "white",
-                      },
-                      "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "white",
-                      },
-                      "& .MuiInputBase-input": {
-                        color: "white",
-                      },
-                      "& .MuiInputBase-input::placeholder": {
-                        color: "white",
-                      },
-                      "& .MuiFormLabel-root": {
-                        color: "white",
-                      },
-                    }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Select Profession" className="text-sm lg:text-base" />
-                    )}
+                    className="w-full p-3 rounded-md bg-gray-600 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                )}
+                  <datalist id="professions">
+                    {professions.map((profession, index) => (
+                      <option key={index} value={profession} />
+                    ))}
+                  </datalist>
+                </div>
+              )}
 
-                {/* Area Autocomplete */}
-                {filter_options.profession && !filter_options.area && (
-                  <Autocomplete
-                    disablePortal
+              {/* Area Selection */}
+              {step === 2 && filter_options.profession && (
+                <div className="mb-4">
+                  <label htmlFor="area" className="block text-lg font-medium mb-2">
+                    Select Area
+                  </label>
+                  <input
+                    list="areas"
+                    id="area"
                     value={filter_options.area}
-                    onChange={(event, newValue) =>
+                    onChange={(e) =>
                       set_filter_option((prev_options) => ({
                         ...prev_options,
-                        area: newValue,
+                        area: e.target.value,
                       }))
                     }
-                    options={allLocations}
-                    sx={{
-                      width: 300,
-                      "& .MuiInputBase-root": {
-                        color: "white",
-                      },
-                      "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "white",
-                      },
-                      "& .MuiInputBase-input": {
-                        color: "white",
-                      },
-                      "& .MuiInputBase-input::placeholder": {
-                        color: "white",
-                      },
-                      "& .MuiFormLabel-root": {
-                        color: "white",
-                      },
-                    }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Select Area" className="text-sm lg:text-base" />
-                    )}
+                    className="w-full p-3 rounded-md bg-gray-600 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                )}
+                  <datalist id="areas">
+                    {allLocations.map((location, index) => (
+                      <option key={index} value={location} />
+                    ))}
+                  </datalist>
+                </div>
+              )}
 
-                {/* Description */}
-                {filter_options.profession && filter_options.area && (
-                  <>
-                    <TextField
-                      value={filter_options.description}
-                      onChange={(e) =>
-                        set_filter_option((prev_data) => ({
-                          ...prev_data,
-                          description: e.target.value,
-                        }))
-                      }
-                      label="Write description"
-                      fullWidth
-                      multiline
-                      rows={4}
-                      variant="outlined"
-                      className="text-white text-sm lg:text-base p-2 px-4"
-                      sx={{
-                        marginBottom: 2,
-                        "& .MuiOutlinedInput-root": {
-                          "& fieldset": {
-                            borderColor: "gray",
-                          },
-                          "&:hover fieldset": {
-                            borderColor: "#007bff",
-                          },
-                          "&.Mui-focused fieldset": {
-                            borderColor: "#007bff",
-                          },
-                          "& .MuiInputBase-input": {
-                            color: "white",
-                          },
-                        },
-                      }}
-                      helperText="Provide a brief description for your filter"
-                    />
-                  </>
-                )}
-              </div>
-            </div>
+              {/* Description Input (Jodit Editor) */}
+              {step === 3 && filter_options.profession && filter_options.area && (
+                <div className="mb-6">
+                  <label className="block text-lg font-medium mb-2">Write a description</label>
+                  <JoditEditor
+                    value={filter_options.description}
+                    onChange={(newDescription) =>
+                      set_filter_option((prev_data) => ({
+                        ...prev_data,
+                        description: newDescription,
+                      }))
+                    }
+                    config={{
+                      placeholder: "Provide details of your job...",
+                      height: 500
+                    }}
+                  />
+                </div>
+              )}
 
-            {filter_options.profession && filter_options.area && (
-              <div className="container">
-                <div className="lg:w-6/12 m-auto p-5 w-12/12">
-                  <TextField
+              {/* Date and Time Picker */}
+              {step === 4 && filter_options.profession && filter_options.area && (
+                <div className="mb-6">
+                  <label htmlFor="end_date" className="block text-lg font-medium mb-2">
+                    Available Date & Time
+                  </label>
+                  <input
                     type="datetime-local"
-                    value={filter_options.date}
+                    id="end_date"
+                    value={filter_options.end_date}
                     onChange={(e) =>
                       set_filter_option((prev_data) => ({
                         ...prev_data,
                         end_date: e.target.value,
                       }))
                     }
-                    label="Available Date & Time"
-                    fullWidth
-                    variant="outlined"
-                    className="text-white text-sm lg:text-base p-2 px-4"
-                    sx={{
-                      marginBottom: 2,
-                      "& .MuiOutlinedInput-root": {
-                        "& fieldset": {
-                          borderColor: "gray",
-                        },
-                        "&:hover fieldset": {
-                          borderColor: "#007bff",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#007bff",
-                        },
-                        "& .MuiInputBase-input": {
-                          color: "white",
-                        },
-                      },
-                    }}
+                    className="w-full p-3 rounded-md bg-gray-600 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-
-                  <FormControl
-                    component="fieldset"
-                    sx={{
-                      marginBottom: 2,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <RadioGroup
-                      value={filter_options.priority}
-                      onChange={(e) =>
-                        set_filter_option((prev_data) => ({
-                          ...prev_data,
-                          need_type: e.target.value,
-                        }))
-                      }
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <FormControlLabel
-                        value="urgent"
-                        control={<Radio sx={{ color: "white" }} />}
-                        label="Urgent"
-                        sx={{
-                          "& .MuiFormControlLabel-label": {
-                            color: "white",
-                          },
-                          marginRight: 3,
-                        }}
-                      />
-                      <FormControlLabel
-                        value="later"
-                        control={<Radio sx={{ color: "white" }} />}
-                        label="Later"
-                        sx={{
-                          "& .MuiFormControlLabel-label": {
-                            color: "white",
-                          },
-                          marginRight: 3,
-                        }}
-                      />
-                      <FormControlLabel
-                        value="confused"
-                        control={<Radio sx={{ color: "white" }} />}
-                        label="Confused"
-                        sx={{
-                          "& .MuiFormControlLabel-label": {
-                            color: "white",
-                          },
-                          marginRight: 3,
-                        }}
-                      />
-                      <FormControlLabel
-                        value="verlater"
-                        control={<Radio sx={{ color: "white" }} />}
-                        label="Verlater"
-                        sx={{
-                          "& .MuiFormControlLabel-label": {
-                            color: "white",
-                          },
-                        }}
-                      />
-                    </RadioGroup>
-                  </FormControl>
                 </div>
-              </div>
-            )}
+              )}
 
-            <div className="w-full">
-              {filter_options.profession &&
-                filter_options.area &&
-                filter_options.end_date &&
-                filter_options.need_type &&
-                filter_options.description && (
-                  <div className="text-center">
-                    <button
-                      onClick={createHelo}
-                      className="p-4 px-5 rounded-lg text-[15px] font-[700] text-white bg-slate-500"
-                    >
-                      Submit
-                    </button>
+              {/* Need Type Radio Buttons */}
+              {step === 4 && (
+                <div className="mb-6">
+                  <label className="block text-lg font-medium mb-2">Need Type</label>
+                  <div className="flex space-x-4">
+                    <label className="text-white">
+                      <input
+                        type="radio"
+                        value="urgent"
+                        checked={filter_options.need_type === "urgent"}
+                        onChange={(e) =>
+                          set_filter_option((prev_data) => ({
+                            ...prev_data,
+                            need_type: e.target.value,
+                          }))
+                        }
+                        className="mr-2"
+                      />
+                      Urgent
+                    </label>
+                    <label className="text-white">
+                      <input
+                        type="radio"
+                        value="later"
+                        checked={filter_options.need_type === "later"}
+                        onChange={(e) =>
+                          set_filter_option((prev_data) => ({
+                            ...prev_data,
+                            need_type: e.target.value,
+                          }))
+                        }
+                        className="mr-2"
+                      />
+                      Later
+                    </label>
+                    <label className="text-white">
+                      <input
+                        type="radio"
+                        value="confused"
+                        checked={filter_options.need_type === "confused"}
+                        onChange={(e) =>
+                          set_filter_option((prev_data) => ({
+                            ...prev_data,
+                            need_type: e.target.value,
+                          }))
+                        }
+                        className="mr-2"
+                      />
+                      Confused
+                    </label>
+                    <label className="text-white">
+                      <input
+                        type="radio"
+                        value="verlater"
+                        checked={filter_options.need_type === "verlater"}
+                        onChange={(e) =>
+                          set_filter_option((prev_data) => ({
+                            ...prev_data,
+                            need_type: e.target.value,
+                          }))
+                        }
+                        className="mr-2"
+                      />
+                      Verlater
+                    </label>
                   </div>
+                </div>
+              )}
+
+              {/* Navigation Buttons (Next/Back) */}
+              <div className="flex justify-between">
+                {step > 1 && (
+                  <button
+                    onClick={() => setStep(step - 1)}
+                    className="px-6 py-3 bg-gray-600 text-white font-bold rounded-lg hover:bg-gray-700 focus:outline-none"
+                  >
+                    Back
+                  </button>
                 )}
+                {step < 4 ? (
+                  <button
+                    onClick={() => setStep(step + 1)}
+                    className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 focus:outline-none"
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    onClick={createHelo}
+                    className="px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 focus:outline-none"
+                  >
+                    Submit
+                  </button>
+                )}
+              </div>
             </div>
-          </>
-        )}
-      </div>
-    </>
+          </div>
+        </>
+      )}
+    </div>
   );
 }

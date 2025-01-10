@@ -25,7 +25,12 @@ export default function JobModal({set_job,job}) {
 
     <div className="text-white py-5">
         <h5 className="font-bold">{job?.profession}</h5>
-        <p className='text-[12px]'>{job?.description}</p>
+        <div>
+
+        <div dangerouslySetInnerHTML={{
+          __html: job?.description
+        }} />
+        </div>
     </div>
 
     <div className="flex ">

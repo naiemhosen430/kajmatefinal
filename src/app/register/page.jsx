@@ -101,7 +101,8 @@ export default function Page() {
         router.push("/dashboard", { scroll: true });
         window.location.reload();
       } else {
-        setErrorMessage("Registration failed. Please try again.");
+        
+        setErrorMessage(response?.message ||"Registration failed. Please try again.");
       }
     } catch (error) {
       setErrorMessage(error?.message);

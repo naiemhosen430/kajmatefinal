@@ -14,7 +14,13 @@ export default function JobCart({data}) {
       {/* Cart Header (Title) */}
         <h2 className="text-2xl font-bold text-right text-white">{data?.profession}</h2>
       <div className="mb-4 flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-white">{data?.description}</h2>
+        <h2 className="text-xl font-semibold text-white">
+          <div dangerouslySetInnerHTML={{
+            __html: data?.description?.slice(0,200) + "...."
+          }}>
+
+          </div>
+        </h2>
         
       </div>
 

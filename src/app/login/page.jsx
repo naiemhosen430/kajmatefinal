@@ -29,15 +29,21 @@ export default function Page() {
         router.push("/dashboard", { scroll: true });
         window.location.reload();
       } else {
+        setErrorMessage(response?.message);
+
       }
     } catch (error) {
       console.error("Error during registration:", error);
+
       setErrorMessage(error?.message);
       // Manage error state
     } finally {
       setLoading(false);
     }
   };
+
+
+  console.log(errorMessage)
 
   return (
     <div className="container m-auto lg:w-4/12 lg:p-10 p-2">

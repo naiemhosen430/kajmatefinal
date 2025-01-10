@@ -58,9 +58,9 @@ export default function AppliedPersonCart({ data, job_id }) {
         </div>
 
         <div className="flex justify-end items-center text-sm">
-          <div className="flex space-x-2">
-            {/* Profile Link */}
-            <Link href={`/select/${job_id}`}>
+            <div className="flex space-x-2">
+              {/* Profile Link */}
+              <Link href={`/select/${data?._id + "and" + job_id}`}>
               <div className="flex justify-center items-center text-white bg-green-600 rounded-md px-4 py-2 hover:bg-green-500 transition-colors duration-200">
                 <span className="text-xs">Select</span>
               </div>
