@@ -3,7 +3,7 @@ import { getApiCall, postApiCall } from '@/api/fatchData';
 import { AuthContex } from '@/context/AuthContex';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, CircularProgress, TextField, Snackbar } from '@mui/material';
+import { Button, CircularProgress, Snackbar } from '@mui/material';
 
 export default function Page() {
   const [jobData, setJobData] = useState(null);
@@ -103,14 +103,6 @@ export default function Page() {
           <h2 className="text-white">{jobData?.profile?.fullname || "no name"}</h2>
           <h2 className="text-gray-500">{jobData?.profile?.location || "no location"}</h2>
         </div>
-        {/* <div className="w-[18%] mr-2">
-          <Button
-            style={{ backgroundColor: "green" }}
-            className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500 mr-2"
-          >
-            Contact
-          </Button>
-        </div> */}
       </div>
 
       <div className="text-white py-5">
@@ -119,134 +111,41 @@ export default function Page() {
 
       <form onSubmit={handleSubmit}>
         <div className="my-4">
-          <TextField
-            fullWidth
-            style={{
-              outline: "1px solid white",
-            }}
-            label="Full Name"
-            sx={{
-              color: "white",
-              "& .MuiInputBase-root": {
-                borderColor: "white",
-              },
-              "& .MuiInputBase-input": {
-                color: "white",
-              },
-              "& .MuiInputLabel-root": {
-                color: "white", // set label text color to white
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-              },
-            }}
+          <input
+            type="text"
             name="fullname"
             value={formData.fullname}
             onChange={handleInputChange}
-            variant="outlined"
-            margin="normal"
-            required
             disabled
+            className="w-full px-4 py-2 rounded-md text-white bg-transparent border border-white focus:outline-none"
+            placeholder="Full Name"
           />
-          <TextField
-            fullWidth
-            style={{
-              outline: "1px solid white",
-            }}
-            label="Phone"
-            sx={{
-              color: "white",
-              "& .MuiInputBase-root": {
-                borderColor: "white",
-              },
-              "& .MuiInputBase-input": {
-                color: "white",
-              },
-              "& .MuiInputLabel-root": {
-                color: "white", // set label text color to white
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-              },
-            }}
+          <input
+            type="tel"
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            variant="outlined"
-            margin="normal"
-            required
             disabled
+            className="w-full px-4 py-2 rounded-md text-white bg-transparent border border-white focus:outline-none mt-4"
+            placeholder="Phone"
           />
-          <TextField
-            fullWidth
-            style={{
-              outline: "1px solid white",
-            }}
-            label="Email"
+          <input
+            type="email"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            variant="outlined"
-            margin="normal"
-            sx={{
-              color: "white",
-              "& .MuiInputBase-root": {
-                borderColor: "white",
-              },
-              "& .MuiInputBase-input": {
-                color: "white",
-              },
-              "& .MuiInputLabel-root": {
-                color: "white", // set label text color to white
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-              },
-            }}
-            required
             disabled
-            type="email"
+            className="w-full px-4 py-2 rounded-md text-white bg-transparent border border-white focus:outline-none mt-4"
+            placeholder="Email"
           />
-          <TextField
-            fullWidth
-            style={{
-              // outline: "1px solid white",
-            }}
-            sx={{
-              color: "white",
-              "& .MuiInputBase-root": {
-                borderColor: "white",
-              },
-              "& .MuiInputBase-input": {
-                color: "white",
-              },
-              "& .MuiInputLabel-root": {
-                color: "white", // set label text color to white
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-              },
-            }}
-            label="Expected Salary"
+          <input
+            type="number"
             name="expectedSalary"
             value={formData.expectedSalary}
             onChange={handleInputChange}
-            variant="outlined"
-            margin="normal"
+            className="w-full px-4 py-2 rounded-md text-white bg-transparent border border-white focus:outline-none mt-4"
+            placeholder="Expected Salary"
             required
-            type="number"
           />
         </div>
 

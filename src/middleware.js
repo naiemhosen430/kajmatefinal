@@ -21,9 +21,9 @@ export const config = {
   matcher: [
     "/login",
     "/register",
-    // "/message",
+    "/message",
     "/Search",
     "/setting",
-    // "/dashboard",
+    "/dashboard",
   ],
 };

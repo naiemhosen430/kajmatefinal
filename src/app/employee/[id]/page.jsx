@@ -48,7 +48,6 @@ export default function page() {
         </div>
         </div>  
     
-
     </div>
     
     <div className="text-white py-5">

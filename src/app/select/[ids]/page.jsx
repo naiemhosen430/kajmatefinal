@@ -44,6 +44,13 @@ export default function Page() {
     );
   }
 
+   const handleSelectEmployrr = async () => {
+    try {
+      
+    } catch (error) {
+      
+    }
+    }
 
   // handling select employee 
   const handleSelectEmployee = async () => {
@@ -59,45 +66,68 @@ export default function Page() {
     );
   }
 
+  console.log(selectEmployeeData);
+
   // Show data once it's fetched
   return (
     <>
-      <div className="lg:rounded-r-[20px] container m-auto lg:p-[20px] p-5 py-10 rounded-t-[20px] w-full lg:h-screen h-[90vh] overflow-hidden overflow-y-auto bg-[#023020]">
-        <div className="flex border-b pb-2 border-gray-500">
-          <div className="w-[12%]">
-            <img src={selectEmployeeData?.profile?.profilephoto || "default.jpeg"} alt={"no img"} />
+      <div className="lg:rounded-r-[20px] container m-auto lg:p-[20px] p-5 py-10 rounded-t-[20px] w-full overflow-hidden overflow-y-auto bg-[#023020]">
+        <div className="lg:rounded-r-[20px] container m-auto lg:p-[20px] p-5 py-10 rounded-t-[20px] w-full overflow-hidden overflow-y-auto bg-[#023020]">
+          <div className="lg:flex border-b pb-2 border-gray-500">
+            <div className="lg:w-[20%]">
+              <img
+                className="lg:w-[150px] w-[100px] lg:h-[150px] h-[100px] rounded-[20px] mt-[-50px] bg-gray-300"
+                src={
+                  selectEmployeeData?.user_data?.profilephoto || "default.jpeg"
+                }
+                alt={"no img"}
+              />
+            </div>
+            <div className="lg:w-[100%] lg:flex items-center w-[80%]">
+              <div className="w-[50%]">
+                <h2 className="text-white text-[25px] font-[700]">
+                  {selectEmployeeData?.user_data?.fullname || "no name"}
+                </h2>
+                <h2 className="text-gray-500 text-[15px] font-[500]">
+                  {selectEmployeeData?.user_data?.location || "no location"}
+                </h2>
+              </div>
+              <div className="w-[50%]">
+                <h2 className="text-white text-[20px] font-[700]">
+                  {selectEmployeeData?.user_data?.profession || "no profession"}
+                </h2>
+                <h2 className="text-gray-500 text-[15px] font-[500]">
+                  {selectEmployeeData?.user_data?.ratting || "0/5"} |{" "}
+                  {selectEmployeeData?.user_data?.jobdone || "0"}
+                </h2>
+              </div>
+            </div>
           </div>
-          <div className="w-[70%]">
-            <h2 className="text-white">{selectEmployeeData?.profile?.fullname || "no name"}</h2>
-            <h2 className="text-gray-500">{selectEmployeeData?.profile?.location || "no location"}</h2>
-          </div>
-          <div className="w-[18%] mr-2">
-            {/* <button
-              style={{ backgroundColor: "green" }}
-              className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2"
-            >
-              Apply
-            </button> */}
+
+          <div className="text-white py-5">
+            <h5 className="font-bold text-[20px]">
+              {selectEmployeeData?.user_data?.tittle || "no title"}
+            </h5>
+            <p className="font-[500] pt-2 text-[15px]">
+              {selectEmployeeData?.user_data?.aboutme || "no abot me"}
+            </p>
           </div>
         </div>
 
-        <div>
+        <div className="pb-5">
           <p>
-            here will the job title and description
-          </p>
-        </div>
+            <div className='text-white' dangerouslySetInnerHTML={{
+              __html:selectEmployeeData?.job_result?.description
+            }}>
 
-        <div className="text-white py-5">
-          <h5 className="font-bold">{selectEmployeeData?.profession || "no profession"}</h5>
-          <h6 className="font-bold">Vacancy: {selectEmployeeData?.vacancy || "no vacancy"}</h6>
-          <h6 className="font-bold">Location: {selectEmployeeData?.location || "no location"}</h6>
-          <p className="text-[14px] py-3">{selectEmployeeData?.description || "no description"}</p>
+            </div>
+          </p>
         </div>
 
         <div className="flex ">
           <div className="w-[50%] mr-2">
             <button
-            onClick={handleSelectEmployee}
+              onClick={handleSelectEmployee}
               style={{ backgroundColor: "green" }}
               className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2"
             >

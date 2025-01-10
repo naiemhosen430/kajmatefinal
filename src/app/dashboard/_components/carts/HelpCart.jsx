@@ -9,7 +9,11 @@ export default function HelpCart({ title, status, location, need_type, professio
       {/* Cart Header (Title) */}
         <h2 className="text-2xl font-bold text-right text-white">{profession}</h2>
       <div className="mb-4 flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-white">{title}</h2>
+        <h2 className="text-xl font-semibold text-white">
+        <div dangerouslySetInnerHTML={{
+            __html: title?.slice(0,200) + "...."
+          }} />
+          </h2>
         
       </div>
 
