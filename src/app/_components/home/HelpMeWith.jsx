@@ -80,14 +80,14 @@ export default function HelpMeWith() {
   };
 
   return (
-    <div className="w-full h-auto p-6 bg-gray-800 text-white">
+    <div style={{paddingBottom:20}} className="w-full h-auto text-white">
       {loading || !allLocations.length ? (
         <div className="flex items-center justify-center h-[500px]">
           <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
         </div>
       ) : (
         <>
-          <div className="flex items-center justify-center py-8">
+          <div className="flex items-center justify-center">
             <div className="lg:w-8/12 w-full p-6 bg-gray-700 rounded-lg shadow-xl">
               <h1 className="text-center text-xl lg:text-2xl font-semibold mb-6">
                 {step === 1 && "Step 1: Select Profession"}

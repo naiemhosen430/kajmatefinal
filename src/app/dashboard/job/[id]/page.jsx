@@ -77,6 +77,9 @@ console.log(jobData)
         <div className="text-white p-5">
         <h5 className="font-bold border-b border-gray-500">{jobData?.profession}</h5>
         <p className="py-2">{jobData?.description}</p>
+                <div className='text-white' dangerouslySetInnerHTML={{
+              __html:selectEmployeeData?.job_result?.description
+            }}>
     </div>
         </div>
       )}
