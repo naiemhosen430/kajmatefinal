@@ -32,7 +32,7 @@ export default function Home() {
 
         <HelpMeWith />
 
-<div className="4">
+<div className="">
 
         <IntroSlider />
         <Feed />

@@ -87,8 +87,8 @@ export default function HelpMeWith() {
         </div>
       ) : (
         <>
-          <div className="flex items-center justify-center">
-            <div className="lg:w-8/12 w-full p-6 bg-gray-700 rounded-lg shadow-xl">
+          <div className="flex  items-center justify-center">
+            <div className="lg:w-9/12 w-full p-6 bg-gray-700 rounded-lg shadow-xl">
               <h1 className="text-center text-xl lg:text-2xl font-semibold mb-6">
                 {step === 1 && "Step 1: Select Profession"}
                 {step === 2 && "Step 2: Select Area"}

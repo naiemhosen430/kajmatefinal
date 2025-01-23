@@ -10,32 +10,54 @@ export default function Feed() {
   const [loading, setLoading] = useState(false);
   const [filterBoxState, setFilterBoxState] = useState(false);
   const [allJobs, setAllJobs] = useState(null);
-  const [allPersons, setAllPersons] = useState(null); // New state for persons
+  const [allPersons, setAllPersons] = useState(null); 
+  const [allAreas,set_allAreas] = useState([])
+  const [professions,set_professions] = useState([])
+  
+
+  const [filter_options, set_filter_options] = useState( {
+    area: [],
+    profession:[]
+  }); 
+
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const jobResponse = await getApiCall(`help/public/get`);
+      const personResponse = await getApiCall(`user/public/getemployees`);
+
+      if (jobResponse?.statusCode === 200) {
+        setAllJobs(jobResponse?.data);
+      }
+
+      if (personResponse?.statusCode === 200) {
+        setAllPersons(personResponse?.data); 
+      }
+    } catch (error) {
+      console.log("Error during fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   // Fetch data when the component mounts
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const jobResponse = await getApiCall(`help/public/get`);
-        const personResponse = await getApiCall(`user/public/get`);
 
-        if (jobResponse?.statusCode === 200) {
-          setAllJobs(jobResponse?.data);
-        }
-
-        if (personResponse?.statusCode === 200) {
-          setAllPersons(personResponse?.data); 
-        }
-      } catch (error) {
-        console.log("Error during fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
     fetchData();
   }, []); 
+
+  const onApply = async () => {
+    fetchData()
+    setFilterBoxState(false)
+
+  }
+
+  const onClose = () => {
+    setFilterBoxState(false)
+  }
 
   return (
     <>
@@ -43,7 +65,7 @@ export default function Feed() {
         <FilterBar
           set_filter_box_state={setFilterBoxState}
           filter_options={filter_options}
-          set_filter_option={set_filter_option}
+          set_filter_options={set_filter_options}
           allAreas={allAreas}
           professions={professions}
           onApply={onApply}
@@ -51,7 +73,7 @@ export default function Feed() {
         />
       )}
 
-      <div className="flex items-center pt-5">
+      <div className="flex items-center py-5 pb-0">
         <button
           style={{ backgroundColor: feedType === "worker" ? "green" : "" }}
           onClick={() => setFeedType("worker")}
@@ -78,7 +100,7 @@ export default function Feed() {
 
       {/* Feed section */}
       {feedType === "job" ? (
-        <div>
+        <div className="pt-3">
           {allJobs ? (
             allJobs.length > 0 ? (
               allJobs.map((job, i) => (
@@ -96,12 +118,12 @@ export default function Feed() {
           ) : null}
         </div>
       ) : (
-        <div>
+        <div className="pt-1">
           {allPersons ? (
             allPersons.length > 0 ? (
               allPersons.map((person, i) => (
-                <div key={i}>
-                  <PersonCart data={person} />
+                <div className="lg:w-3/12 w-6/12 inline-block p-4" key={i}>
+                  <PersonCart personData={person} />
                 </div>
               ))
             ) : (

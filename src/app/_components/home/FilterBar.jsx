@@ -1,9 +1,9 @@
 import React from 'react';
 import { Autocomplete, TextField, Button, Box, Typography } from '@mui/material';
 
-export default function FilterBar({ filter_options, set_filter_option, allAreas, professions, onApply, onClose }) {
+export default function FilterBar({ filter_options, set_filter_options, allAreas, professions, onApply, onClose }) {
   return (
-    <div className="fixed h-screen w-screen top-0 left-0 bg-black/50 flex justify-end">
+    <div className="fixed h-screen w-screen z-[1000] top-0 left-0 bg-black/50 flex justify-end">
 
     <Box
       sx={{
@@ -26,7 +26,7 @@ export default function FilterBar({ filter_options, set_filter_option, allAreas,
         disablePortal
         value={filter_options?.area}
         onChange={(event, newValue) =>
-          set_filter_option((prev_options) => ({
+          set_filter_options((prev_options) => ({
             ...prev_options,
             area: newValue,
           }))
@@ -73,7 +73,7 @@ export default function FilterBar({ filter_options, set_filter_option, allAreas,
         disablePortal
         value={filter_options?.profession}
         onChange={(event, newValue) =>
-          set_filter_option((prev_options) => ({
+          set_filter_options((prev_options) => ({
             ...prev_options,
             profession: newValue,
           }))
