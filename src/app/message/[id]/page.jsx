@@ -25,9 +25,15 @@ export default function Page() {
   const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
       console.log(message_data)
-      // socket.emit("messagesent",{
-      //   mstContent, ownerId,reciverid, sendtime, status, msgid
-      // })
+      socket.emit("messagesent", {
+        mstContent: message_data, 
+        ownerId: user?._id,
+        receiverId: message_data?.profile?._id, 
+        sendtime: Date.now(),
+        status: "unseen",
+        msgid: id
+      });
+      
     }
   };
 
@@ -65,7 +71,7 @@ export default function Page() {
       </div>
 
       {/* Message Input */}
-      <div className="flex fixed bottom-0 w-full items-center p-4 bg-[#023020]">
+      <div className="flex fixed left-0 bottom-0 w-full items-center p-4 bg-[#023020]">
   <input
     type="text"
     value={newMessage}
