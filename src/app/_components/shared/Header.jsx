@@ -1,13 +1,33 @@
 "use client"
-import {useContext} from "react"
+import {useContext, useEffect} from "react"
 import { AuthContex } from "@/context/AuthContex";
 import Link from "next/link";
 import React from "react";
 import { IoMdChatboxes, IoMdNotifications } from "react-icons/io";
+import socket from "@/api/connectIo";
+import { MessageContext } from "@/context/MessageContext";
 
 export default function Header() {
   const {state} = useContext(AuthContex)
   const user = state?.user
+    const { messageState,dispatch } = useContext(MessageContext);
+
+  useEffect(() => {
+    if (user?._id) {
+      const messageHandler = (data) => {
+        console.log({data})
+        dispatch({ type: "UPDATE_MESSAGE", payload: {data:data?.msgObj,_id:data?.msgid} });
+
+      };
+  
+      socket.on("msg-" + user._id, messageHandler);
+  
+      return () => {
+        socket.off("msg-" + user._id, messageHandler);
+      };
+    }
+  }, [socket, user?._id]);
+
   return (
     <>
       <div className="bg-black/50 p-2">

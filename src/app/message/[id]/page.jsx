@@ -20,20 +20,19 @@ export default function Page() {
       const finded_data = messages?.find((s_message) => s_message?._id === id);
       set_message_data(finded_data);
     }
-  }, [messages, id]);
+  }, [messageState, id]);
 
   const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
-      console.log(message_data)
       socket.emit("messagesent", {
-        mstContent: message_data, 
+        mstContent: newMessage, 
         ownerId: user?._id,
         receiverId: message_data?.profile?._id, 
         sendtime: Date.now(),
         status: "unseen",
         msgid: id
       });
-      
+      setNewMessage("")
     }
   };
 

@@ -11,6 +11,17 @@ const messageReducer = (messageState, action) => {
       return { ...messageState, messages: messageState.messages?.length ? [...messageState.messages, action.payload] : [] };
     case "ADD_MESSAGES":
       return { ...messageState, messages: action.payload?.length ? action.payload : [] };
+    case "UPDATE_MESSAGE":
+      const updatedMessages = messageState.messages?.map((message) => {
+        if (message._id === action.payload?._id) {
+          return action.payload?.data || message; 
+        }
+        return message;
+      });
+
+ 
+      
+      return updatedMessages
     default:
 
       return messageState;
