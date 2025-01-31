@@ -39,7 +39,7 @@ export default function Header() {
         setUnreadMessages(prev => prev + 1);
 
         // Show toast notification
-        toast(`New message from ${data?.msgObj?.owner_id}`, {
+        toast(data?.name || "N/A" + ` ${data?.msgObj?.text}`, {
           position: "top-right",
           autoClose: 5000,
           type: "info",
@@ -48,8 +48,8 @@ export default function Header() {
         // Display push notification if permission granted
         if (Notification.permission === "granted") {
           new Notification("New message", {
-            body: `You have a new message from ${data?.msgObj?.owner_id}`,
-            icon: "/path-to-your-icon.png", // Optional icon
+            body: data?.name || "N/A" + ` ${data?.msgObj?.test}`,
+            icon: "/path-to-your-icon.png", 
           });
         }
       };

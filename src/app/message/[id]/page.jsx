@@ -1,10 +1,9 @@
 "use client"
 import socket from '@/api/connectIo';
-import { getApiCall, postApiCall } from '@/api/fatchData';
-import { AuthContex } from '@/context/AuthContex';
-import { MessageContext } from '@/context/MessageContext';
 import { useParams } from 'next/navigation';
 import React, { useContext, useEffect, useState, useRef } from 'react';
+import { AuthContex } from '@/context/AuthContex';
+import { MessageContext } from '@/context/MessageContext';
 
 export default function Page() {
   const { state } = useContext(AuthContex);
@@ -40,9 +39,18 @@ export default function Page() {
         receiverId: message_data?.profile?._id, 
         sendtime: Date.now(),
         status: "unseen",
-        msgid: id
+        msgid: id,
+        recivername: message_data?.profile?.fullname
       });
       setNewMessage(""); // Clear input field
+    }
+  };
+
+  // Handle Enter key press to send the message
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { // Only trigger on Enter key press without Shift (for multi-line messages)
+      e.preventDefault(); // Prevent default Enter behavior (such as adding a new line)
+      handleSendMessage();
     }
   };
 
@@ -68,7 +76,7 @@ export default function Page() {
       </div>
 
       {/* Messages Display Area */}
-      <div className="messages-area space-y-4 overflow-y-auto max-h-[70vh] mt-4 mb-6">
+      <div className="messages-area space-y-4 pb-5 overflow-y-auto max-h-[70vh] mt-4 mb-6">
         {message_data?.chats?.map((chat, index) => (
           <div key={index} className={`flex ${chat.owner_id === user?._id ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-xs p-3 rounded-lg ${chat.owner_id === user?._id ? 'bg-blue-600 text-white' : 'bg-gray-600 text-white'}`}>
@@ -86,6 +94,7 @@ export default function Page() {
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
+          onKeyDown={handleKeyDown} // Listen for Enter key press
           className="flex-1 p-3 rounded-lg bg-gray-700 text-white focus:outline-none"
           placeholder="Type your message..."
         />
