@@ -8,6 +8,10 @@ import AuthContexProvider from "@/context/AuthContex";
 import MessageContextProvider from "@/context/MessageContext";
 import NotificationContextProvider from "@/context/NotificationContext";
 
+// React Toastify Imports
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";  // Importing the Toastify CSS
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -19,12 +23,6 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// export const metadata = {
-//   title: "Amr Food",
-//   description:
-//     "Amr Food is a platform where you can buy and sell food around your area. We will d everything for you to make easy  your food business.",
-// };
-
 export default function RootLayout({ children }) {
   const theme = createTheme();
   return (
@@ -33,18 +31,30 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthContexProvider>
-        <NotificationContextProvider>
-        <MessageContextProvider>
-
-          <ThemeProvider theme={theme}>
-              <Header />
-            <div className="px-0">
-              {children}
-            </div>
-          </ThemeProvider>
-        </MessageContextProvider>
-        </NotificationContextProvider>
+          <NotificationContextProvider>
+            <MessageContextProvider>
+              <ThemeProvider theme={theme}>
+                <Header />
+                <div className="px-0">
+                  {children}
+                </div>
+              </ThemeProvider>
+            </MessageContextProvider>
+          </NotificationContextProvider>
         </AuthContexProvider>
+
+        {/* Toast Container for global toasts */}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </body>
     </html>
   );

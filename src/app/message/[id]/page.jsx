@@ -4,23 +4,33 @@ import { getApiCall, postApiCall } from '@/api/fatchData';
 import { AuthContex } from '@/context/AuthContex';
 import { MessageContext } from '@/context/MessageContext';
 import { useParams } from 'next/navigation';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 
 export default function Page() {
   const { state } = useContext(AuthContex);
   const { messageState } = useContext(MessageContext);
-  const messages = messageState?.messages
+  const messages = messageState?.messages;
   const user = state?.user;
   let { id } = useParams();
   const [message_data, set_message_data] = useState(null);
   const [newMessage, setNewMessage] = useState('');
-  
+  const messagesEndRef = useRef(null);  // Ref for scrolling to the bottom of the message list
+
+  // Effect to set the message data based on ID
   useEffect(() => {
     if (id && messages) {
       const finded_data = messages?.find((s_message) => s_message?._id === id);
       set_message_data(finded_data);
     }
   }, [messageState, id]);
+
+  // Effect to scroll to the bottom whenever the message data changes
+  useEffect(() => {
+    // Scroll to the bottom of the messages area when new messages are added
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [message_data?.chats]); // Trigger when chats change
 
   const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
@@ -32,10 +42,9 @@ export default function Page() {
         status: "unseen",
         msgid: id
       });
-      setNewMessage("")
+      setNewMessage(""); // Clear input field
     }
   };
-
 
   if (!message_data) {
     return (
@@ -67,25 +76,26 @@ export default function Page() {
             </div>
           </div>
         ))}
+        {/* Scroll to Bottom Marker */}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Message Input */}
       <div className="flex fixed left-0 bottom-0 w-full items-center p-4 bg-[#023020]">
-  <input
-    type="text"
-    value={newMessage}
-    onChange={(e) => setNewMessage(e.target.value)}
-    className="flex-1 p-3 rounded-lg bg-gray-700 text-white focus:outline-none"
-    placeholder="Type your message..."
-  />
-  <button
-    onClick={handleSendMessage}
-    className="ml-3 px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition-all"
-  >
-    Send
-  </button>
-</div>
-
+        <input
+          type="text"
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          className="flex-1 p-3 rounded-lg bg-gray-700 text-white focus:outline-none"
+          placeholder="Type your message..."
+        />
+        <button
+          onClick={handleSendMessage}
+          className="ml-3 px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition-all"
+        >
+          Send
+        </button>
+      </div>
     </div>
   );
 }
