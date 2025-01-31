@@ -7,6 +7,8 @@ import { IoMdChatboxes, IoMdNotifications } from "react-icons/io";
 import socket from "@/api/connectIo";
 import { MessageContext } from "@/context/MessageContext";
 import { toast } from "react-toastify"; // Importing toast from react-toastify
+import { RiAccountCircleLine } from "react-icons/ri";
+
 
 // Function to request notification permission from the user
 const requestNotificationPermission = async () => {
@@ -104,10 +106,9 @@ export default function Header() {
               </Link>
 
               <Link
-                className="p-1 px-5 text-[15px] border border-gray-500 rounded-xl text-white font-[600]"
-                href={"/register"}
+className="text-[25px] mx-2 relative rounded-xl text-white font-[600]"                href={"/register"}
               >
-                {user?.fullname}
+              <RiAccountCircleLine />
               </Link>
             </>
           ) : (

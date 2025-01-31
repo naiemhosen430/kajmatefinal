@@ -80,15 +80,13 @@ export default function HelpMeWith() {
   };
 
   return (
-    <div style={{paddingBottom:20}} className="w-full h-auto text-white">
+    <div className="w-full h-auto text-white">
       {loading || !allLocations.length ? (
-        <div className="flex items-center justify-center h-[500px]">
-          <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
-        </div>
+    <div className=" w-full p-6 bg-gray-700 rounded-lg h-[250px] shadow-xl">        </div>
       ) : (
         <>
-          <div className="flex  items-center justify-center">
-            <div className="lg:w-9/12 w-full p-6 bg-gray-700 rounded-lg shadow-xl">
+          <div className="flex m-0 items-center justify-center">
+            <div className=" w-full p-6 bg-gray-700 rounded-lg shadow-xl">
               <h1 className="text-center text-xl lg:text-2xl font-semibold mb-6">
                 {step === 1 && "Step 1: Select Profession"}
                 {step === 2 && "Step 2: Select Area"}
@@ -98,7 +96,7 @@ export default function HelpMeWith() {
 
               {/* Profession Selection */}
               {step === 1 && (
-                <div className="mb-4">
+                <div >
                   <label htmlFor="profession" className="block text-lg font-medium mb-2">
                     Select Profession
                   </label>
@@ -259,7 +257,7 @@ export default function HelpMeWith() {
               )}
 
               {/* Navigation Buttons (Next/Back) */}
-              <div className="flex justify-between">
+              <div className="flex mt-3 justify-between">
                 {step > 1 && (
                   <button
                     onClick={() => setStep(step - 1)}

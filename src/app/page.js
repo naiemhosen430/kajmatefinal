@@ -30,14 +30,21 @@ export default function Home() {
 
       <div className="pt-5 container m-auto px-5">
 
-        <HelpMeWith />
+<div className="lg:flex items-center justify-between">
 
-<div className="">
+<div className="lg:w-[35%] mb-0">
+
+        <HelpMeWith />
+</div>
+
+<div className="lg:w-[62%] pt-4 lg:pt-0">
+
 
         <IntroSlider />
+</div>
+</div>
         <Feed />
 
-</div>
       </div>
       </>
         :
