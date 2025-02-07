@@ -35,24 +35,23 @@ export default function MessageContextProvider({ children }) {
     messages: null,
   });
 
+  const fetchDataMesages = async () => {
+    try {
+      const response = await getApiCall("message/getallmessage");
+      if (response?.statusCode === 200 && response?.data) {
+        dispatch({ type: "ADD_MESSAGES", payload: response?.data });
+      }
+    } catch (error) {}
+  };
   useEffect(() => {
     if (token && !messageState?.messages) {
-      const fetchData = async () => {
-        try {
-          const response = await getApiCall("message/getallmessage");
-          if (response?.statusCode === 200 && response?.data) {
-            console.log(response?.data)
-            dispatch({ type: "ADD_MESSAGES", payload: response?.data });
-          }
-        } catch (error) {}
-      };
 
-      fetchData();
+      fetchDataMesages();
     }
   }, [token, messageState]);
 
   return (
-    <MessageContext.Provider value={{ messageState, dispatch }}>
+    <MessageContext.Provider value={{ messageState, dispatch,fetchDataMesages }}>
       {children}
     </MessageContext.Provider>
   );

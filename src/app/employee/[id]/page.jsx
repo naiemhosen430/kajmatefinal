@@ -20,7 +20,6 @@ export default function page() {
     fetchData();
   }, [id]);
 
-  console.log({profileData})
 
   if (!profileData ){
     return       <div className="flex items-center justify-center h-[500px]">

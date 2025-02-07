@@ -43,7 +43,7 @@ export default function Page() {
   };
 
 
-  console.log(errorMessage)
+  console.error(errorMessage)
 
   return (
     <div className="container m-auto lg:w-4/12 lg:p-10 p-2">

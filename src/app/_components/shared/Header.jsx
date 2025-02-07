@@ -33,7 +33,6 @@ export default function Header() {
   useEffect(() => {
     if (user?._id) {
       const messageHandler = (data) => {
-        console.log({ data });
         // Dispatch new message to the store
         dispatch({ type: "UPDATE_MESSAGE", payload: { data: data?.msgObj, _id: data?.msgid } });
 

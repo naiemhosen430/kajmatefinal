@@ -14,7 +14,6 @@ export default function PersonCart({ personData }) {
     setIsModalOpen(false); 
   };
 
-  console.log(personData)
 
   return (
     <>

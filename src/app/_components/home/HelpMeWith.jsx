@@ -45,7 +45,6 @@ export default function HelpMeWith() {
           setAllLocations(response?.data?.map((s_location) => s_location?.name));
         }
       } catch (error) {
-        console.log("Error during registration:", error);
         setErrorMessage(error?.message);
       } finally {
         setLoading(false);
@@ -72,7 +71,6 @@ export default function HelpMeWith() {
         router.push("/dashboard", { scroll: true });
       }
     } catch (error) {
-      console.log("Error during registration:", error);
       setErrorMessage(error?.message);
     } finally {
       setLoading(false);

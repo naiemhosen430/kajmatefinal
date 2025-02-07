@@ -7,7 +7,7 @@ import { MessageContext } from '@/context/MessageContext';
 
 export default function Page() {
   const { state } = useContext(AuthContex);
-  const { messageState } = useContext(MessageContext);
+  const { messageState,fetchDataMesages } = useContext(MessageContext);
   const messages = messageState?.messages;
   const user = state?.user;
   let { id } = useParams();
@@ -18,6 +18,7 @@ export default function Page() {
   // Effect to set the message data based on ID
   useEffect(() => {
     if (id && messages) {
+      fetchDataMesages()
       const finded_data = messages?.find((s_message) => s_message?._id === id);
       set_message_data(finded_data);
     }

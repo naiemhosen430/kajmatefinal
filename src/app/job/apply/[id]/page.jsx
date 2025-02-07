@@ -80,7 +80,6 @@ export default function Page() {
     }
   };
 
-  console.log(jobData)
 
   if (!jobData) {
     return (

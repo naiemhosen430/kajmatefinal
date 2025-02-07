@@ -35,7 +35,6 @@ export default function Feed() {
         setAllPersons(personResponse?.data); 
       }
     } catch (error) {
-      console.log("Error during fetching data:", error);
     } finally {
       setLoading(false);
     }

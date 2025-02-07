@@ -1,5 +1,5 @@
 "use client"
-import { getApiCall } from '@/api/fatchData';
+import { getApiCall, patchApiCall, postApiCall } from '@/api/fatchData';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -54,7 +54,22 @@ export default function Page() {
 
   // handling select employee 
   const handleSelectEmployee = async () => {
-    console.log("hello ")
+    setLoading(true); 
+    setError(null); 
+    try {
+      const data = await patchApiCall(`help/select/hire/${job_id + "and" + person_id}`);
+      const response = await postApiCall(`message/create/${person_id}`, { job_id });
+
+      if (response?.statusCode === 200) {
+        router.push(`/message/${response?.data?._id}`, { scroll: true });
+      }
+
+    } catch (error) {
+      setError("Error hiring the employee.");
+      console.error("Error fetching profile data:", error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   // Show error message if there was an error
@@ -66,7 +81,6 @@ export default function Page() {
     );
   }
 
-  console.log(selectEmployeeData);
 
   // Show data once it's fetched
   return (
