@@ -14,7 +14,7 @@ export default function JobCart({ data }) {
         className="w-full p-6 bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transition-all cursor-pointer transform hover:scale-105 mx-auto my-4"
       >
         {/* Cart Header (Title) */}
-        <h2 className="text-3xl font-semibold text-white text-center mb-4">{data?.profession}</h2>
+        <h2 className="text-3xl font-semibold text-white text-left mb-4">{data?.profession}</h2>
 
         {/* Cart Body (Description) */}
         <div className="text-white text-sm mb-4">
@@ -28,16 +28,16 @@ export default function JobCart({ data }) {
 
         {/* Cart Footer (Location, Status, Type) */}
         <div className="flex justify-between text-sm text-gray-300">
-          <div className="flex w-4/12 items-center justify-center">
+          <div className="flex w-4/12 items-center justify-start">
             <span className="text-white font-medium">{data?.area}</span>
           </div>
-          <div className="flex w-3/12 items-center justify-center">
+          <div className="flex w-3/12 items-center justify-start">
             <span className="text-white font-medium">{data?.status}</span>
           </div>
-          <div className="flex w-2/12 items-center justify-center">
+          <div className="flex w-2/12 items-center justify-start">
             <span className="text-white font-medium">{data?.need_type}</span>
           </div>
-          <div className="flex w-3/12 items-center justify-center">
+          <div className="flex w-3/12 items-center justify-start">
             <span className="text-white font-medium">{data?.type}</span>
           </div>
         </div>

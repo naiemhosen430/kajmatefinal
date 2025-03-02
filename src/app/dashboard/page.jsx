@@ -8,8 +8,8 @@ import { Switch } from "@mui/material";
 
 export default function Page() {
   const { state } = useContext(AuthContex);
-  const [account_state, set_account_state] = useState(true);
   const user = state?.user;
+  const [account_state, set_account_state] = useState(true);
 
   // Handle the state change when the Switch is toggled
   const handleSwitchChange = (event) => {
