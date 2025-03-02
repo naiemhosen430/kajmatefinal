@@ -5,6 +5,7 @@ import React from "react";
 import Analizing from "./_components/Analizing";
 import OrderSection from "./_components/OrderSection";
 import { Switch } from "@mui/material";
+import Link from "next/link";
 
 export default function Page() {
   const { state } = useContext(AuthContex);
@@ -62,7 +63,7 @@ export default function Page() {
         </div>
 
         </div>
-
+<Link href="/dashboard/editprofile">Edit profile</Link>
         <div>
         <div className=" w-[60%] px-5 py-2">
             <h1 className="text-white text-[15px]">

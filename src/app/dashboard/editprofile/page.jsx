@@ -1,11 +1,10 @@
 "use client";
 import React, { useContext, useEffect, useState } from 'react';
 import { Stepper, Step, StepLabel, Button, TextField, Typography, Container, IconButton, Grid, Box } from '@mui/material';
-import axios from 'axios';
 import validator from 'validator';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { getApiCall, postApiCall } from '@/api/fatchData';
+import { getApiCall, patchApiCall, postApiCall } from '@/api/fatchData';
 import { AuthContex } from '@/context/AuthContex';
 
 const steps = ['Basic Information', 'Professional and Education Info', 'Billing Info', 'Confirmation'];
@@ -403,7 +402,7 @@ export default function EditProfilePage() {
 
     // Send form data to the server
     try {
-      await postApiCall('auth/update', formData);
+      await patchApiCall('auth/update', formData);
       setActiveStep(activeStep + 1); 
     } catch (error) {
       alert('Error updating profile');
