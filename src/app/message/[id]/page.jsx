@@ -58,7 +58,7 @@ export default function Page() {
   if (!message_data) {
     return (
       <div className="flex items-center justify-center h-[500px]">
-        <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-t-4 border-black border-solid rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -96,12 +96,12 @@ export default function Page() {
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           onKeyDown={handleKeyDown} // Listen for Enter key press
-          className="flex-1 p-3 rounded-lg bg-gray-700 text-white focus:outline-none"
+          className="flex-1 p-3 rounded-lg bg-gray-700 text-black focus:outline-none"
           placeholder="Type your message..."
         />
         <button
           onClick={handleSendMessage}
-          className="ml-3 px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition-all"
+          className="ml-3 px-6 py-3 rounded-lg bg-blue-600 text-black hover:bg-blue-500 transition-all"
         >
           Send
         </button>

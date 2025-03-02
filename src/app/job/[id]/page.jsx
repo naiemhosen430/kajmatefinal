@@ -23,7 +23,7 @@ export default function page() {
 
 //   if (!jobData ){
 //     return       <div className="flex items-center justify-center h-[500px]">
-//     <div className="w-16 h-16 m-auto border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+//     <div className="w-16 h-16 m-auto border-4 border-t-4 border-black border-solid rounded-full animate-spin"></div>
 // </div>
 //   }
   return (
@@ -41,14 +41,14 @@ export default function page() {
         <button
     style={{ backgroundColor: "green" }}
     // onClick={() => set_feed_type("worker")}
-    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2"
+    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-black border border-gray-500  mr-2"
   >
     Apply
   </button>
         </div>
     </div>
     
-    <div className="text-white py-5">
+    <div className="text-black py-5">
         <h5 className="font-bold">{jobData?.profession || "no profession"}</h5>
         <h6 className="font-bold">Vacency: {jobData?.vacency || "no vacency"}</h6>
         <h6 className="font-bold">Location: {jobData?.location || "no location"}</h6>
@@ -60,7 +60,7 @@ export default function page() {
         <button
     style={{ backgroundColor: "green" }}
     // onClick={() => set_feed_type("worker")}
-    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2"
+    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-black border border-gray-500  mr-2"
   >
     Apply
   </button>
@@ -70,7 +70,7 @@ export default function page() {
         <button
     style={{ backgroundColor: "" }}
     // onClick={() => set_feed_type("worker")}
-    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2"
+    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-black border border-gray-500  mr-2"
   >
     Save For Later
   </button>

@@ -39,7 +39,7 @@ export default function Page() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[500px]">
-        <div className="w-16 h-16 m-auto border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+        <div className="w-16 h-16 m-auto border-4 border-t-4 border-black border-solid rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -99,7 +99,7 @@ export default function Page() {
             </div>
             <div className="lg:w-[100%] lg:flex items-center w-[80%]">
               <div className="w-[50%]">
-                <h2 className="text-white text-[25px] font-[700]">
+                <h2 className="text-black text-[25px] font-[700]">
                   {selectEmployeeData?.user_data?.fullname || "no name"}
                 </h2>
                 <h2 className="text-gray-500 text-[15px] font-[500]">
@@ -107,7 +107,7 @@ export default function Page() {
                 </h2>
               </div>
               <div className="w-[50%]">
-                <h2 className="text-white text-[20px] font-[700]">
+                <h2 className="text-black text-[20px] font-[700]">
                   {selectEmployeeData?.user_data?.profession || "no profession"}
                 </h2>
                 <h2 className="text-gray-500 text-[15px] font-[500]">
@@ -118,7 +118,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="text-white py-5">
+          <div className="text-black py-5">
             <h5 className="font-bold text-[20px]">
               {selectEmployeeData?.user_data?.tittle || "no title"}
             </h5>
@@ -143,7 +143,7 @@ export default function Page() {
             <button
               onClick={handleSelectEmployee}
               style={{ backgroundColor: "green" }}
-              className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2"
+              className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-black border border-gray-500  mr-2"
             >
               Select for this job
             </button>
@@ -152,7 +152,7 @@ export default function Page() {
           <div className="w-[50%] ml-2">
             <button
               style={{ backgroundColor: "" }}
-              className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2"
+              className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-black border border-gray-500  mr-2"
             >
               Reject
             </button>

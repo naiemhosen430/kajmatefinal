@@ -19,11 +19,11 @@ export default function JobModal({set_job,job}) {
         <h2 className="text-gray-100 text-[12px]">{job?.profile?.location}</h2>
         </div>
         <div onClick={() => set_job(null)} className="w-[5%] cursor-pointer text-white">
-        <IoMdClose className="text-white text-[20px]" />
+        <IoMdClose className="text-black text-[20px]" />
         </div>
     </div>
 
-    <div className="text-white py-5">
+    <div className="text-black py-5">
         <h5 className="font-bold">{job?.profession}</h5>
         <div>
 
@@ -39,7 +39,7 @@ export default function JobModal({set_job,job}) {
         <button
     style={{ backgroundColor: "green" }}
     // onClick={() => set_feed_type("worker")}
-    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2"
+    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-black border border-gray-500  mr-2"
   >
     Apply
   </button>
@@ -50,7 +50,7 @@ export default function JobModal({set_job,job}) {
         <button
     style={{ backgroundColor: "" }}
     // onClick={() => set_feed_type("worker")}
-    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2"
+    className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-black border border-gray-500  mr-2"
   >
     Save For Later
   </button>

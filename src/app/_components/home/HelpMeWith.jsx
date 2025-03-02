@@ -78,7 +78,7 @@ export default function HelpMeWith() {
   };
 
   return (
-    <div className="w-full h-auto text-white">
+    <div className="w-full h-auto text-black">
       {loading || !allLocations.length ? (
     <div className=" w-full p-6 bg-gray-700 rounded-lg h-[250px] shadow-xl">        </div>
       ) : (
@@ -108,7 +108,7 @@ export default function HelpMeWith() {
                         profession: e.target.value,
                       }))
                     }
-                    className="w-full p-3 rounded-md bg-gray-600 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 rounded-md bg-gray-600 text-black border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <datalist id="professions">
                     {professions.map((profession, index) => (
@@ -134,7 +134,7 @@ export default function HelpMeWith() {
                         area: e.target.value,
                       }))
                     }
-                    className="w-full p-3 rounded-md bg-gray-600 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 rounded-md bg-gray-600 text-black border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <datalist id="areas">
                     {allLocations.map((location, index) => (
@@ -180,7 +180,7 @@ export default function HelpMeWith() {
                         end_date: e.target.value,
                       }))
                     }
-                    className="w-full p-3 rounded-md bg-gray-600 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 rounded-md bg-gray-600 text-black border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               )}
@@ -190,7 +190,7 @@ export default function HelpMeWith() {
                 <div className="mb-6">
                   <label className="block text-lg font-medium mb-2">Need Type</label>
                   <div className="flex space-x-4">
-                    <label className="text-white">
+                    <label className="text-black">
                       <input
                         type="radio"
                         value="urgent"
@@ -205,7 +205,7 @@ export default function HelpMeWith() {
                       />
                       Urgent
                     </label>
-                    <label className="text-white">
+                    <label className="text-black">
                       <input
                         type="radio"
                         value="later"
@@ -220,7 +220,7 @@ export default function HelpMeWith() {
                       />
                       Later
                     </label>
-                    <label className="text-white">
+                    <label className="text-black">
                       <input
                         type="radio"
                         value="confused"
@@ -235,7 +235,7 @@ export default function HelpMeWith() {
                       />
                       Confused
                     </label>
-                    <label className="text-white">
+                    <label className="text-black">
                       <input
                         type="radio"
                         value="verlater"
@@ -259,7 +259,7 @@ export default function HelpMeWith() {
                 {step > 1 && (
                   <button
                     onClick={() => setStep(step - 1)}
-                    className="px-6 py-3 bg-gray-600 text-white font-bold rounded-lg hover:bg-gray-700 focus:outline-none"
+                    className="px-6 py-3 bg-gray-600 text-black font-bold rounded-lg hover:bg-gray-700 focus:outline-none"
                   >
                     Back
                   </button>
@@ -267,14 +267,14 @@ export default function HelpMeWith() {
                 {step < 4 ? (
                   <button
                     onClick={() => setStep(step + 1)}
-                    className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 focus:outline-none"
+                    className="px-6 py-3 bg-blue-600 text-black font-bold rounded-lg hover:bg-blue-700 focus:outline-none"
                   >
                     Next
                   </button>
                 ) : (
                   <button
                     onClick={createHelo}
-                    className="px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 focus:outline-none"
+                    className="px-6 py-3 bg-green-600 text-black font-bold rounded-lg hover:bg-green-700 focus:outline-none"
                   >
                     Submit
                   </button>

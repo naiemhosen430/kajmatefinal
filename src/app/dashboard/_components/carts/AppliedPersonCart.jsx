@@ -61,14 +61,14 @@ export default function AppliedPersonCart({ data, job_id }) {
             <div className="flex space-x-2">
               {/* Profile Link */}
               <Link href={`/select/${data?._id + "and" + job_id}`}>
-              <div className="flex justify-center items-center text-white bg-green-600 rounded-md px-4 py-2 hover:bg-green-500 transition-colors duration-200">
+              <div className="flex justify-center items-center text-black bg-green-600 rounded-md px-4 py-2 hover:bg-green-500 transition-colors duration-200">
                 <span className="text-xs">Select</span>
               </div>
             </Link>
 
                         {/* Profile Link */}
                         <Link href={`/employee/${data?._id}`}>
-              <div className="flex justify-center items-center text-white bg-green-600 rounded-md px-4 py-2 hover:bg-green-500 transition-colors duration-200">
+              <div className="flex justify-center items-center text-black bg-green-600 rounded-md px-4 py-2 hover:bg-green-500 transition-colors duration-200">
                 <span className="text-xs">Profile</span>
               </div>
             </Link>
@@ -76,7 +76,7 @@ export default function AppliedPersonCart({ data, job_id }) {
             {/* Chat Link */}
             <div
               onClick={chatHandler}
-              className="flex justify-center items-center text-white bg-blue-600 rounded-md px-4 py-2 hover:bg-blue-500 transition-colors duration-200"
+              className="flex justify-center items-center text-black bg-blue-600 rounded-md px-4 py-2 hover:bg-blue-500 transition-colors duration-200"
             >
               <span className="text-xs">Chat</span>
             </div>

@@ -17,7 +17,7 @@ export default function FilterBar({ filter_options, set_filter_options, allAreas
         maxWidth: '100%',
       }}
     >
-      <Typography variant="h6" sx={{ color: 'white', marginBottom: 2 }}>
+      <Typography variant="h6" sx={{ color: 'black', marginBottom: 2 }}>
         Filter Options
       </Typography>
 
@@ -32,38 +32,14 @@ export default function FilterBar({ filter_options, set_filter_options, allAreas
           }))
         }
         options={allAreas}
-        sx={{
-          marginBottom: 2,
-          "& .MuiInputBase-root": {
-            color: "white",
-          },
-          "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "white",
-          },
-          "& .MuiInputBase-input": {
-            color: "white",
-          },
-          "& .MuiInputBase-input::placeholder": {
-            color: "white",
-          },
-          "& .MuiFormLabel-root": {
-            color: "white",
-          },
-        }}
+
         renderInput={(params) => (
           <TextField
             {...params}
             label="Select Area"
             variant="outlined"
             className="text-sm lg:text-base"
-            sx={{
-              input: {
-                color: 'white',
-              },
-              label: {
-                color: 'white',
-              },
-            }}
+      
           />
         )}
       />
@@ -79,38 +55,14 @@ export default function FilterBar({ filter_options, set_filter_options, allAreas
           }))
         }
         options={professions}
-        sx={{
-          marginBottom: 2,
-          "& .MuiInputBase-root": {
-            color: "white",
-          },
-          "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "white",
-          },
-          "& .MuiInputBase-input": {
-            color: "white",
-          },
-          "& .MuiInputBase-input::placeholder": {
-            color: "white",
-          },
-          "& .MuiFormLabel-root": {
-            color: "white",
-          },
-        }}
+   
         renderInput={(params) => (
           <TextField
             {...params}
             label="Select Profession"
             variant="outlined"
             className="text-sm lg:text-base"
-            sx={{
-              input: {
-                color: 'white',
-              },
-              label: {
-                color: 'white',
-              },
-            }}
+       
           />
         )}
       />
@@ -120,26 +72,14 @@ export default function FilterBar({ filter_options, set_filter_options, allAreas
         <Button
           variant="outlined"
           onClick={onApply}
-          sx={{
-            color: 'white',
-            borderColor: 'white',
-            '&:hover': {
-              backgroundColor: '#444',
-            },
-          }}
+    
         >
           Apply
         </Button>
         <Button
           variant="outlined"
           onClick={onClose}
-          sx={{
-            color: 'white',
-            borderColor: 'white',
-            '&:hover': {
-              backgroundColor: '#444',
-            },
-          }}
+     
         >
           Close
         </Button>

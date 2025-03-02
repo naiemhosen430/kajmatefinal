@@ -26,7 +26,7 @@ export default function Page() {
   if (!jobData) {
     return (
       <div className="flex items-center justify-center h-[500px]">
-        <div className="w-16 h-16 m-auto border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+        <div className="w-16 h-16 m-auto border-4 border-t-4 border border-solid rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -37,7 +37,7 @@ export default function Page() {
         <button
           style={{ backgroundColor: pageType === "apply" ? "green" : "" }}
           onClick={() => setPageType("apply")}
-          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-white border border-gray-500 w-[100%] mr-2"
+          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-black border border-gray-500 w-[100%] mr-2"
         >
           Applied
         </button>
@@ -45,7 +45,7 @@ export default function Page() {
         <button
           style={{ backgroundColor: pageType === "details" ? "green" : "" }}
           onClick={() => setPageType("details")}
-          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-white border border-gray-500 w-[100%] ml-2"
+          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-black border border-gray-500 w-[100%] ml-2"
         >
           Details
         </button>
@@ -62,12 +62,12 @@ export default function Page() {
             ))
           ) : (
             <div>
-              <p className="text-center w-full text-white p-10">Nobody applied</p>
+              <p className="text-center w-full text-black p-10">Nobody applied</p>
             </div>
           )}
         </div>
       ) : (
-        <div className="text-white p-5">
+        <div className="text-black p-5">
           <h5 className="font-bold border-b border-gray-500">{jobData?.profession}</h5>
           <p className="py-2">{jobData?.description}</p>
           <div

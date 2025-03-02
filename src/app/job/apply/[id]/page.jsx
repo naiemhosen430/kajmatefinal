@@ -104,7 +104,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="text-white py-5">
+      <div className="text-black py-5">
         <h5 className="font-bold">{jobData?.profession || "no profession"}</h5>
       </div>
 
@@ -116,7 +116,7 @@ export default function Page() {
             value={formData.fullname}
             onChange={handleInputChange}
             disabled
-            className="w-full px-4 py-2 rounded-md text-white bg-transparent border border-white focus:outline-none"
+            className="w-full px-4 py-2 rounded-md text-black bg-transparent border border focus:outline-none"
             placeholder="Full Name"
           />
           <input
@@ -125,7 +125,7 @@ export default function Page() {
             value={formData.phone}
             onChange={handleInputChange}
             disabled
-            className="w-full px-4 py-2 rounded-md text-white bg-transparent border border-white focus:outline-none mt-4"
+            className="w-full px-4 py-2 rounded-md text-black bg-transparent border border focus:outline-none mt-4"
             placeholder="Phone"
           />
           <input
@@ -134,7 +134,7 @@ export default function Page() {
             value={formData.email}
             onChange={handleInputChange}
             disabled
-            className="w-full px-4 py-2 rounded-md text-white bg-transparent border border-white focus:outline-none mt-4"
+            className="w-full px-4 py-2 rounded-md text-black bg-transparent border border focus:outline-none mt-4"
             placeholder="Email"
           />
           <input
@@ -142,7 +142,7 @@ export default function Page() {
             name="expectedSalary"
             value={formData.expectedSalary}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-md text-white bg-transparent border border-white focus:outline-none mt-4"
+            className="w-full px-4 py-2 rounded-md text-black bg-transparent border border focus:outline-none mt-4"
             placeholder="Expected Salary"
             required
           />

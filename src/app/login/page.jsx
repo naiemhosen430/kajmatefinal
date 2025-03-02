@@ -49,13 +49,13 @@ export default function Page() {
     <div className="container m-auto lg:w-4/12 lg:p-10 p-2">
     {loading ? 
       <div className="flex items-center justify-center h-[500px]">
-    <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+    <div className="w-16 h-16 border-4 border-t-4 border border-solid rounded-full animate-spin"></div>
 </div>
 
 :
 
 <div elevation={3} className="p-6 mt-10 rounded-lg bg-[#284329] bg-gradient-to-r from-[#2d7c51] to-[#1a4d33] bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Cpath d=%22M0 0L2 2L4 0L6 2L8 0L10 2L10 10H0Z%22 fill=%22rgba(255, 255, 255, 0.2)%22/%3E%3C/svg%3E')]">
-<Typography variant="h5" className="mb-4 text-white text-center">
+<Typography variant="h5" className="mb-4 text-black text-center">
           Login
         </Typography>
         {errorMessage && 

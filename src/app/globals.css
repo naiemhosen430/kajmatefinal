@@ -45,7 +45,7 @@ body {
   display: none; /* Safari and Chrome */
 }
 
-
+/* 
 .css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled{
   opacity: 90%;
   -webkit-text-fill-color: white;
@@ -53,4 +53,4 @@ body {
 
   label[data-shrink=false]+.MuiInputBase-formControl .css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input{
     border: 2px solid white;
-  }
+  } */

@@ -17,7 +17,7 @@ export default function PAGE() {
         <button
           style={{ backgroundColor: feed_type === "all" ? "green" : "" }}
           onClick={() => set_feed_type("all")}
-          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-white border border-gray-500 w-[40%] mr-2"
+          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-black border border-gray-500 w-[40%] mr-2"
         >
           All
         </button>
@@ -25,7 +25,7 @@ export default function PAGE() {
         <button
           style={{ backgroundColor: feed_type === "unseen" ? "green" : "" }}
           onClick={() => set_feed_type("unseen")}
-          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-white border border-gray-500 w-[40%] mx-2"
+          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-black border border-gray-500 w-[40%] mx-2"
         >
           Unseen
         </button>
@@ -33,7 +33,7 @@ export default function PAGE() {
         <button
           style={{ backgroundColor: feed_type === "nonreplied" ? "green" : "" }}
           onClick={() => set_feed_type("nonreplied")}
-          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-white border border-gray-500 w-[40%] ml-2"
+          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-black border border-gray-500 w-[40%] ml-2"
         >
           Un Replied
         </button>
@@ -57,10 +57,10 @@ export default function PAGE() {
               </div>
             ))}
           </>
-           :             <p className="text-center text-white p-10">No notification found</p>}
+           :             <p className="text-center text-black p-10">No notification found</p>}
         </>
         :       <div className="flex items-center justify-center h-[500px]">
-    <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+    <div className="w-16 h-16 border-4 border-t-4 border-black border-solid rounded-full animate-spin"></div>
 </div>}
       </div>
         </div>

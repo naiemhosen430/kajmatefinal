@@ -42,7 +42,7 @@ export default function page() {
         <form onSubmit={handleSubmit(onSubmit)}>
 
         <TextField
-            className=" border border-white text-white"
+            className=" border border text-white"
             fullWidth
             sx={{
               color: "white",
@@ -73,15 +73,15 @@ export default function page() {
 
     <div className="py-5 mt-5">
         <div className="flex items-center p-3 bg-gray-900">
-<h5 className="text-white p-2 w-4/12">Date</h5>
-<h5 className="text-white p-2 w-4/12">Ammount</h5>
-<h5 className="text-white p-2 w-4/12">Status</h5>
+<h5 className="text-black p-2 w-4/12">Date</h5>
+<h5 className="text-black p-2 w-4/12">Ammount</h5>
+<h5 className="text-black p-2 w-4/12">Status</h5>
         </div>
     </div>
 
     <div>
 
-<p className="text-center w-full text-white p-10">No tranction history!</p>
+<p className="text-center w-full text-black p-10">No tranction history!</p>
 </div>
 
     </div>

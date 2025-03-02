@@ -29,7 +29,7 @@ export default function page() {
                   className="p-2 px-4 text-slate-400 flex items-center justify-between text-left w-full font-serif font-[600] hover:bg-slate-700 border-b-[1px] border-gray-500"
                 >
                 <div>
-                  <h3 className="text-white text-[17px] font-[700]">Allow new job notification</h3>
+                  <h3 className="text-black text-[17px] font-[700]">Allow new job notification</h3>
                   <p className="text-gray-100 text-[10px] font-[500]">Allow to send me new job based my area and skill to my email.</p>
                 </div>
 
@@ -46,7 +46,7 @@ export default function page() {
                   className="p-2 px-4 text-slate-400 flex items-center justify-between text-left w-full font-serif font-[600] hover:bg-slate-700 border-b-[1px] border-gray-500"
                 >
                 <div>
-                  <h3 className="text-white text-[17px] font-[700]">Allow multiple device</h3>
+                  <h3 className="text-black text-[17px] font-[700]">Allow multiple device</h3>
                   <p className="text-gray-100 text-[10px] font-[500]">Allow to use my account in multiple device. You can see login history as well.</p>
                 </div>
 

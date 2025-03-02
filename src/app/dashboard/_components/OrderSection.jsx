@@ -50,7 +50,7 @@ export default function OrderSection() {
         value={activeTab}
         onChange={(e, newValue) => setActiveTab(newValue)}
         aria-label="tabs"
-        className="bg-none border-2 border-gray-500 text-white rounded-lg shadow-md"
+        className="bg-none border-2 border-gray-500 text-black rounded-lg shadow-md"
         indicatorColor="primary"
         textColor="primary"
         centered
@@ -64,7 +64,7 @@ export default function OrderSection() {
         {activeTab === 0 && helpData && (
           <Box className=" bg-none rounded-lg shadow-lg">
           {helpData?.length === 0 &&
-          <p className="text-center text-white p-10">No data found</p>
+          <p className="text-center text-black p-10">No data found</p>
           }
           {helpData?.slice().reverse()?.map((single_mydata, i)=>(
 
@@ -77,7 +77,7 @@ export default function OrderSection() {
         {activeTab === 1 && workHistoryData && (
           <Box className="p-4 bg-none rounded-lg shadow-lg">
           {workHistoryData?.length === 0 &&
-          <p className="text-center text-white p-10">No data found</p>
+          <p className="text-center text-black p-10">No data found</p>
           }
           {workHistoryData?.slice().reverse()?.map((single_mydata, i)=>(
 

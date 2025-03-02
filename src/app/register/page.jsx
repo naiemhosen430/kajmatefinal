@@ -116,7 +116,7 @@ export default function Page() {
     <div className="container m-auto lg:p-10 p-2">
       {loading ? (
         <div className="flex items-center justify-center h-[500px]">
-          <div className="w-16 h-16 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+          <div className="w-16 h-16 border-4 border-t-4 border-black border-solid rounded-full animate-spin"></div>
         </div>
       ) : (
         <div className="lg:flex">
@@ -177,7 +177,7 @@ export default function Page() {
                 <div className="flex items-center pt-5">
                   {/* Country Autocomplete */}
                   <Autocomplete
-                    className="text-white w-full mr-2"
+                    className="text-black w-full mr-2"
                     options={countries}
                     sx={{
                     color: "white",
@@ -196,7 +196,7 @@ export default function Page() {
 
                   {/* Division Autocomplete */}
                   <Autocomplete
-                    className="text-white w-full ml-2"
+                    className="text-black w-full ml-2"
                     options={divisions}
                     value={division}
                     sx={{
@@ -216,7 +216,7 @@ export default function Page() {
 
                 {/* District Autocomplete */}
                 <Autocomplete
-                  className="text-white w-full"
+                  className="text-black w-full"
                   options={districts}
                   sx={{
                     color: "white",
@@ -236,7 +236,7 @@ export default function Page() {
 
                 {/* Upazila Autocomplete */}
                 <Autocomplete
-                  className="text-white w-full"
+                  className="text-black w-full"
                   options={upazilas}
                   value={upazila}
                   sx={{
