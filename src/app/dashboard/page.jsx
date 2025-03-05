@@ -40,7 +40,7 @@ export default function Page() {
         <div className="lg:w-[50%] flex items-center w-[100%]">
 
           <div className=" w-[60%]">
-            <h1 className="text-black text-[20px]">
+            <h1 className="text-white text-[20px]">
               {user?.phone}
             </h1>
             <h4 className="text-blue-500 text-[15px]">
@@ -49,7 +49,7 @@ export default function Page() {
           </div>
 
           <div className=" text-right w-[40%]">
-            <h1 className="text-black text-[20px]">
+            <h1 className="text-white text-[20px]">
               {account_state ? "As Worker" : "As Client"}
 
             </h1>
@@ -66,7 +66,7 @@ export default function Page() {
 <Link href="/dashboard/editprofile">Edit profile</Link>
         <div>
         <div className=" w-[60%] px-5 py-2">
-            <h1 className="text-black text-[15px]">
+            <h1 className="text-white text-[15px]">
               {user?.tittle}
             </h1>
             <h4 className="text-blue-500 text-[10px]">

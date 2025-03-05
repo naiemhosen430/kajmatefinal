@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
           <NotificationContextProvider>
             <MessageContextProvider>
               <ThemeProvider theme={theme}>
-                <div className="min-h-screen bg-[#202a3a]">
+                <div className="min-h-screen bg-[#364050]">
 
                 <Header />
                 <div className="px-0">
