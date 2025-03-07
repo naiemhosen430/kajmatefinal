@@ -88,28 +88,28 @@ export default function Header() {
               </Link>
 
               <Link
-                className="text-[15px] mx-2 lg:px-5 px-2 py-2 relative rounded-xl text-white font-[600]"
+                className="text-[15px] lg:mx-2 mx-1 lg:px-5 px-1 py-2 relative rounded-xl text-white font-[600]"
                 href={"/employees"}
               >
             Employee
               </Link>
 
               <Link
-                className="text-[15px] mx-2 lg:block hidden lg:px-5 px-2 py-2 relative bg-gray-500 rounded-xl text-white font-[600]"
+                className="text-[15px] lg:mx-2 mx-1 lg:block hidden lg:px-5 px-1 py-2 relative bg-gray-500 rounded-xl text-white font-[600]"
                 href={"/postajob"}
               >
             Post a job
               </Link>
 
               <Link
-                className="text-[20px] mx-2 lg:hidden block lg:px-5 px-2 py-2 relative rounded-xl text-white font-[600]"
+                className="text-[20px] mx-1 lg:hidden block lg:px-5 py-2 relative rounded-xl text-white font-[600]"
                 href={"/postajob"}
               >
             +
               </Link>
 
               <Link
-                className="lg:text-[25px] text-[15px] mx-2 relative rounded-xl text-white font-[600]"
+                className="lg:text-[25px] text-[18px] mx-2 relative rounded-xl text-white font-[600]"
                 href={"/notification"}
               >
                 <IoMdNotifications />
@@ -121,7 +121,7 @@ export default function Header() {
               </Link>
 
               <Link
-                className="lg:text-[25px] text-[15px] mx-2 relative rounded-xl text-white font-[600]"
+                className="lg:text-[25px] text-[18px] mx-2 relative rounded-xl text-white font-[600]"
                 href={"/message"}
               >
                 <IoMdChatboxes />
@@ -133,7 +133,7 @@ export default function Header() {
               </Link>
 
               <Link
-className="lg:text-[25px] text-[15px] mx-2 relative rounded-xl text-white font-[600]"                href={"/register"}
+className="lg:text-[25px] text-[18px] mx-2 relative rounded-xl text-white font-[600]"                href={"/register"}
               >
               <RiAccountCircleLine />
               </Link>

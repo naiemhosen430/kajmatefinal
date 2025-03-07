@@ -27,14 +27,14 @@ export default function JobCart({ data }) {
         </div>
 
         {/* Cart Footer (Location, Status, Type) */}
-        <div className="flex text-sm text-gray-300">
-          <div className="inline-block mr-2 p-2 px-4 bg-gray-700 rounded-full">
+        <div className="lg:flex text-sm text-gray-300">
+          <div className="inline-block mr-2 p-2 px-4 bg-gray-700 rounded-[10px]">
             <span className="text-white font-medium">{data?.area}</span>
           </div>
-          <div className="inline-block mx-2 p-2 px-4 bg-gray-600 rounded-full">
+          <div className="inline-block mx-2 p-2 px-4 bg-gray-600 rounded-[10px]">
             <span className="text-white font-medium">{data?.need_type}</span>
           </div>
-          <div className="inline-block mx-2 p-2 px-4 border border-gray-700 rounded-full">
+          <div className="inline-block mx-2 p-2 px-4 border border-gray-700 rounded-[10px]">
             <span className="text-white font-medium">{data?.type}</span>
           </div>
         </div>
