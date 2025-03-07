@@ -28,14 +28,14 @@ export async function generateMetadata({ params }) {
         title: "Job Not Found",
         description: "The job opportunity you're looking for is not available.",
         image: "/default.jpeg",
-        url: "https://your-website-url.com", // Add your fallback URL
+        url: "https://kajmate.vercel.app", // Add your fallback URL
       },
       twitter: {
         card: "summary_large_image",
         title: "Job Not Found",
         description: "The job opportunity you're looking for is not available.",
         image: "/default.jpeg",
-        url: "https://your-website-url.com", // Add your fallback URL
+        url: "https://kajmate.vercel.app", // Add your fallback URL
       },
     };
   }
@@ -48,14 +48,14 @@ export async function generateMetadata({ params }) {
       title: `${jobData?.profession} job opportunity`,
       description: `Find a job opportunity for ${jobData?.prodile?.fullname} in ${jobData?.location}.`,
       image: jobData?.prodile?.profilephoto || "/default.jpeg",
-      url: `https://your-website-url.com/job/${id}`, // Update with your dynamic job URL
+      url: `https://kajmate.vercel.app/job/${id}`, // Update with your dynamic job URL
     },
     twitter: {
       card: "summary_large_image",
       title: `${jobData?.profession} job opportunity`,
       description: `Find a job opportunity for ${jobData?.prodile?.fullname} in ${jobData?.location}.`,
       image: jobData?.prodile?.profilephoto || "/default.jpeg",
-      url: `https://your-website-url.com/job/${id}`, // Update with your dynamic job URL
+      url: `https://kajmate.vercel.app/job/${id}`, // Update with your dynamic job URL
     },
   };
 }
