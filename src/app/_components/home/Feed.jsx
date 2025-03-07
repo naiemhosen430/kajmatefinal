@@ -135,7 +135,7 @@ export default function Feed() {
         {allPersons ? (
             allPersons.length > 0 ? (
               allPersons.map((person, i) => (
-                <div className="lg:w-3/12 w-6/12 inline-block p-4" key={i}>
+                <div className="lg:w-3/12 w-6/12 inline-block lg:p-4 p-2" key={i}>
                   <PersonCart personData={person} />
                 </div>
               ))

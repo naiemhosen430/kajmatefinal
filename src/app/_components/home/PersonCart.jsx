@@ -30,9 +30,9 @@ export default function PersonCart({ personData }) {
             className="w-[100px] h-[100px] rounded-full object-cover mx-auto border-4 border-gray-200 mb-4"
           />
           <div className="text-center">
-            <h3 className="font-semibold text-lg text-white">{personData?.fullname}</h3>
-            <h5 className="text-sm text-gray-300">{personData?.aboutme?.slice(0,200)}</h5>
-            <p className="text-sm text-gray-200">{personData?.tittle}</p>
+            <h3 className="font-semibold lg:text-[20px] text-[15px] text-white">{personData?.fullname}</h3>
+            {/* <h5 className="lg:text-[15px] text-[10px] text-gray-300">{personData?.aboutme?.slice(0,200)}</h5> */}
+            <p className="lg:text-[15px] text-[10px] text-gray-200">{personData?.tittle}</p>
             <div className="mt-2">
               <button className="text-blue-500 hover:underline">View Profile</button>
             </div>
