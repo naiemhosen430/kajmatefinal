@@ -32,7 +32,7 @@ export default function PersonCart({ personData }) {
           <div className="text-center">
             <h3 className="font-semibold text-lg text-white">{personData?.fullname}</h3>
             <h5 className="text-sm text-gray-300">{personData?.aboutme?.slice(0,200)}</h5>
-            <p className="text-sm text-gray-600">{personData?.tittle}</p>
+            <p className="text-sm text-gray-200">{personData?.tittle}</p>
             <div className="mt-2">
               <button className="text-blue-500 hover:underline">View Profile</button>
             </div>

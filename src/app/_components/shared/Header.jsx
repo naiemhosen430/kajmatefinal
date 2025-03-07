@@ -81,6 +81,27 @@ export default function Header() {
           {user ? (
             <>
               <Link
+                className="text-[15px] mx-2 px-5 py-2 relative rounded-xl text-white font-[600]"
+                href={"/jobs"}
+              >
+            Job
+              </Link>
+
+              <Link
+                className="text-[15px] mx-2 px-5 py-2 relative rounded-xl text-white font-[600]"
+                href={"/employees"}
+              >
+            Employee
+              </Link>
+
+              <Link
+                className="text-[15px] mx-2 px-5 py-2 relative bg-gray-500 rounded-xl text-white font-[600]"
+                href={"/postajob"}
+              >
+            Post a job
+              </Link>
+
+              <Link
                 className="text-[25px] mx-2 relative rounded-xl text-white font-[600]"
                 href={"/notification"}
               >

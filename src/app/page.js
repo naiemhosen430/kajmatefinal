@@ -28,21 +28,22 @@ export default function Home() {
         {user ?
       <>
 
-      <div className="pt-5 container m-auto px-5">
+      <div className="pt-5 container m-auto pb-5 px-5">
 
 <div className="lg:flex items-center justify-between">
 
-<div className="lg:w-[35%] mb-0">
+{/* <div className="lg:w-[35%] mb-0">
 
         <HelpMeWith />
-</div>
+</div> */}
 
-<div className="lg:w-[62%] pt-4 lg:pt-0">
+<div className="lg:w-[100%] pt-4 lg:pt-0">
 
 
         <IntroSlider />
 </div>
 </div>
+
         <Feed />
 
       </div>

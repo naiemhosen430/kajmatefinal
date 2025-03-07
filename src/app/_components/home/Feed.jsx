@@ -1,9 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FilterBar from "./FilterBar";
 import JobCart from "./JobCart";
 import PersonCart from "./PersonCart";
 import { getApiCall } from "@/api/fatchData";
+import { JonAndPersonContext } from "@/context/JonAndPersonContext";
 
 export default function Feed() {
   const [feedType, setFeedType] = useState("worker");
@@ -13,6 +14,8 @@ export default function Feed() {
   const [allPersons, setAllPersons] = useState(null); 
   const [allAreas,set_allAreas] = useState([])
   const [professions,set_professions] = useState([])
+    const {state, dispatch} = useContext(JonAndPersonContext);
+  
   
 
   const [filter_options, set_filter_options] = useState( {
@@ -43,10 +46,15 @@ export default function Feed() {
 
   // Fetch data when the component mounts
   useEffect(() => {
+    if (!state.jobs || !state.emplyees) {
+      fetchData();
+    } else {
+        setAllJobs(state.jobs);
+        setAllPersons(state.emplyees);
+    }
 
 
-    fetchData();
-  }, []); 
+  }, [state.jobs,state.emplyees]); 
 
   const onApply = async () => {
     fetchData()
@@ -72,11 +80,11 @@ export default function Feed() {
         />
       )}
 
-      <div className="flex items-center py-5 pb-0">
+      {/* <div className="flex items-center py-5 pb-0">
         <button
           style={{ backgroundColor: feedType === "worker" ? "green" : "" }}
           onClick={() => setFeedType("worker")}
-          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-black border border-gray-500 w-[40%] mr-2"
+          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-white border border-gray-500 w-[40%] mr-2"
         >
           Worker
         </button>
@@ -84,21 +92,65 @@ export default function Feed() {
         <button
           style={{ backgroundColor: feedType === "job" ? "green" : "" }}
           onClick={() => setFeedType("job")}
-          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-black border border-gray-500 w-[40%] mx-2"
+          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-white border border-gray-500 w-[40%] mx-2"
         >
           Job
         </button>
 
         <button
           onClick={() => setFilterBoxState(!filterBoxState)}
-          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-black border border-gray-500 w-[20%] ml-2"
+          className="p-1 px-4 text-[12px] lg:text-[20px] rounded-lg text-white border border-gray-500 w-[20%] ml-2"
         >
           Filter
         </button>
+      </div> */}
+
+<br />
+
+      <div>
+        <div>
+          <h1 className="text-white text-[20px]">Recent Jobs</h1>
+        </div>
+        {allJobs ? (
+            allJobs.length > 0 ? (
+              allJobs.map((job, i) => (
+                <div key={i}>
+                  <JobCart data={job} />
+                </div>
+              ))
+            ) : (
+              <p className="text-center text-white p-10">No jobs found</p>
+            )
+          ) : loading ? (
+            <div className="flex items-center justify-center h-[500px]">
+              <div className="w-16 h-16 border-4 border-t-4 border border-solid rounded-full animate-spin"></div>
+            </div>
+          ) : null}
+      </div>
+
+      <div>
+        <div>
+          <h1 className="text-white text-[20px]">Top Employees</h1>
+        </div>
+        {allPersons ? (
+            allPersons.length > 0 ? (
+              allPersons.map((person, i) => (
+                <div className="lg:w-3/12 w-6/12 inline-block p-4" key={i}>
+                  <PersonCart personData={person} />
+                </div>
+              ))
+            ) : (
+              <p className="text-center text-white p-10">No workers found</p>
+            )
+          ) : loading ? (
+            <div className="flex items-center justify-center h-[500px]">
+              <div className="w-16 h-16 border-4 border-t-4 border border-solid rounded-full animate-spin"></div>
+            </div>
+          ) : null}
       </div>
 
       {/* Feed section */}
-      {feedType === "job" ? (
+      {/* {feedType === "job" ? (
         <div className="pt-3">
           {allJobs ? (
             allJobs.length > 0 ? (
@@ -108,7 +160,7 @@ export default function Feed() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-black p-10">No jobs found</p>
+              <p className="text-center text-white p-10">No jobs found</p>
             )
           ) : loading ? (
             <div className="flex items-center justify-center h-[500px]">
@@ -126,7 +178,7 @@ export default function Feed() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-black p-10">No workers found</p>
+              <p className="text-center text-white p-10">No workers found</p>
             )
           ) : loading ? (
             <div className="flex items-center justify-center h-[500px]">
@@ -134,7 +186,7 @@ export default function Feed() {
             </div>
           ) : null}
         </div>
-      )}
+      )} */}
     </>
   );
 }

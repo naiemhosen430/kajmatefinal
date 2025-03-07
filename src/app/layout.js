@@ -11,6 +11,7 @@ import NotificationContextProvider from "@/context/NotificationContext";
 // React Toastify Imports
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";  // Importing the Toastify CSS
+import JonAndPersonContextProvider from "@/context/JonAndPersonContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,15 +34,17 @@ export default function RootLayout({ children }) {
         <AuthContexProvider>
           <NotificationContextProvider>
             <MessageContextProvider>
-              <ThemeProvider theme={theme}>
-                <div className="min-h-screen bg-[#364050]">
+              <JonAndPersonContextProvider>
+                <ThemeProvider theme={theme}>
+                  <div className="min-h-screen bg-[#364050]">
 
-                <Header />
-                <div className="px-0">
-                  {children}
-                </div>
-                </div>
-              </ThemeProvider>
+                  <Header />
+                  <div className="px-0">
+                    {children}
+                  </div>
+                  </div>
+                </ThemeProvider>
+              </JonAndPersonContextProvider>
             </MessageContextProvider>
           </NotificationContextProvider>
         </AuthContexProvider>
