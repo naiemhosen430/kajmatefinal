@@ -71,9 +71,9 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="bg-black/50 p-2">
-      <div className="container m-auto p-4 py-0 flex items-center justify-between">
-        <div className="w-6/12 text-white text-[30px]">
+    <div className="bg-black/50 lg:p-2">
+      <div className="container m-auto lg:p-4 p-2 py-0 flex items-center justify-between">
+        <div className="lg:w-6/12 w-3/12 text-white lg:text-[30px] text-[20px]">
           <Link href={"/"}>Kajmate</Link>
         </div>
 
@@ -81,28 +81,35 @@ export default function Header() {
           {user ? (
             <>
               <Link
-                className="text-[15px] mx-2 px-5 py-2 relative rounded-xl text-white font-[600]"
+                className="text-[15px] mx-2 lg:px-5 px-2 py-2 relative rounded-xl text-white font-[600]"
                 href={"/jobs"}
               >
             Job
               </Link>
 
               <Link
-                className="text-[15px] mx-2 px-5 py-2 relative rounded-xl text-white font-[600]"
+                className="text-[15px] mx-2 lg:px-5 px-2 py-2 relative rounded-xl text-white font-[600]"
                 href={"/employees"}
               >
             Employee
               </Link>
 
               <Link
-                className="text-[15px] mx-2 px-5 py-2 relative bg-gray-500 rounded-xl text-white font-[600]"
+                className="text-[15px] mx-2 lg:block hidden lg:px-5 px-2 py-2 relative bg-gray-500 rounded-xl text-white font-[600]"
                 href={"/postajob"}
               >
             Post a job
               </Link>
 
               <Link
-                className="text-[25px] mx-2 relative rounded-xl text-white font-[600]"
+                className="text-[20px] mx-2 lg:hidden block lg:px-5 px-2 py-2 relative rounded-xl text-white font-[600]"
+                href={"/postajob"}
+              >
+            +
+              </Link>
+
+              <Link
+                className="lg:text-[25px] text-[15px] mx-2 relative rounded-xl text-white font-[600]"
                 href={"/notification"}
               >
                 <IoMdNotifications />
@@ -114,7 +121,7 @@ export default function Header() {
               </Link>
 
               <Link
-                className="text-[25px] mx-2 relative rounded-xl text-white font-[600]"
+                className="lg:text-[25px] text-[15px] mx-2 relative rounded-xl text-white font-[600]"
                 href={"/message"}
               >
                 <IoMdChatboxes />
@@ -126,7 +133,7 @@ export default function Header() {
               </Link>
 
               <Link
-className="text-[25px] mx-2 relative rounded-xl text-white font-[600]"                href={"/register"}
+className="lg:text-[25px] text-[15px] mx-2 relative rounded-xl text-white font-[600]"                href={"/register"}
               >
               <RiAccountCircleLine />
               </Link>
@@ -134,13 +141,13 @@ className="text-[25px] mx-2 relative rounded-xl text-white font-[600]"          
           ) : (
             <>
               <Link
-                className="p-1 px-5 text-[15px] mr-2 border border-gray-500 rounded-xl text-white font-[600]"
+                className="p-1 lg:px-5 px-2 text-[15px] mr-2 border border-gray-500 rounded-xl text-white font-[600]"
                 href={"/login"}
               >
                 Login
               </Link>
               <Link
-                className="p-1 px-5 text-[15px] border border-gray-500 rounded-xl text-white font-[600]"
+                className="p-1 lg:px-5 px-2 text-[15px] border border-gray-500 rounded-xl text-white font-[600]"
                 href={"/register"}
               >
                 Register
