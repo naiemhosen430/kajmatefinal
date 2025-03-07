@@ -72,6 +72,21 @@ export default async function Page({ params }) {
     console.error("Error fetching job data:", error);
   }
 
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: jobData?.profession + " job opportunity",
+        text: `Check out this job for ${jobData?.prodile?.fullname} at ${jobData?.location}. More details here.`,
+        url: currentUrl,  // Now using the dynamically set URL
+      })
+      .then(() => console.log('Job shared successfully!'))
+      .catch((error) => console.error('Error sharing job:', error));
+    } else {
+      // Fallback if the Web Share API is not supported
+      alert('Your device does not support sharing');
+    }
+  };
+
   if (!jobData) {
     return (
       <div>
@@ -93,7 +108,7 @@ export default async function Page({ params }) {
             <h2 className="text-gray-500">{jobData?.prodile?.location || "no location"}</h2>
           </div>
           <div className="lg:w-[18%] mr-2">
-            <button className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2">
+            <button onClick={handleShare} className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2">
               Share
             </button>
           </div>
