@@ -1,24 +1,21 @@
 import { getApiCall } from '@/api/fatchData';
 import Link from 'next/link';
-import React from 'react';
+import ShareBtn from './ShareBtn';
 
 // Server-side metadata function
 export async function generateMetadata({ params }) {
-  const { id } = await params; // Make sure to await the params
+  const { id } = params;
 
   // Fetching job data from the server
   let jobData = null;
   try {
     const data = await getApiCall(`help/public/get/${id}`);
-    console.log({data,id})
     jobData = data?.data || null;
   } catch (error) {
     console.error("Error fetching job data:", error);
   }
 
-  console.log(jobData)
-
-  // If no job data exists, you can return default metadata.
+  // Default metadata if job data is not available
   if (!jobData) {
     return {
       title: "Job Not Found",
@@ -28,14 +25,14 @@ export async function generateMetadata({ params }) {
         title: "Job Not Found",
         description: "The job opportunity you're looking for is not available.",
         image: "/default.jpeg",
-        url: "https://kajmate.vercel.app", // Add your fallback URL
+        url: "https://kajmate.vercel.app", // Fallback URL
       },
       twitter: {
         card: "summary_large_image",
         title: "Job Not Found",
         description: "The job opportunity you're looking for is not available.",
         image: "/default.jpeg",
-        url: "https://kajmate.vercel.app", // Add your fallback URL
+        url: "https://kajmate.vercel.app", // Fallback URL
       },
     };
   }
@@ -48,22 +45,22 @@ export async function generateMetadata({ params }) {
       title: `${jobData?.profession} job opportunity`,
       description: `Find a job opportunity for ${jobData?.prodile?.fullname} in ${jobData?.location}.`,
       image: jobData?.prodile?.profilephoto || "/default.jpeg",
-      url: `https://kajmate.vercel.app/job/${id}`, // Update with your dynamic job URL
+      url: `https://kajmate.vercel.app/job/${id}`,
     },
     twitter: {
       card: "summary_large_image",
       title: `${jobData?.profession} job opportunity`,
       description: `Find a job opportunity for ${jobData?.prodile?.fullname} in ${jobData?.location}.`,
       image: jobData?.prodile?.profilephoto || "/default.jpeg",
-      url: `https://kajmate.vercel.app/job/${id}`, // Update with your dynamic job URL
+      url: `https://kajmate.vercel.app/job/${id}`,
     },
   };
 }
 
 export default async function Page({ params }) {
-  const { id } = await params; // Make sure to await params here as well
-  
-  // Fetching the job data (server-side)
+  const { id } = params;
+
+  // Fetch job data on the server side
   let jobData = null;
   try {
     const data = await getApiCall(`help/public/get/${id}`);
@@ -71,21 +68,6 @@ export default async function Page({ params }) {
   } catch (error) {
     console.error("Error fetching job data:", error);
   }
-
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: jobData?.profession + " job opportunity",
-        text: `Check out this job for ${jobData?.prodile?.fullname} at ${jobData?.location}. More details here.`,
-        url: currentUrl,  // Now using the dynamically set URL
-      })
-      .then(() => console.log('Job shared successfully!'))
-      .catch((error) => console.error('Error sharing job:', error));
-    } else {
-      // Fallback if the Web Share API is not supported
-      alert('Your device does not support sharing');
-    }
-  };
 
   if (!jobData) {
     return (
@@ -95,6 +77,8 @@ export default async function Page({ params }) {
       </div>
     );
   }
+
+  const currentUrl = `https://kajmate.vercel.app/job/${id}`; // Set the dynamic URL for sharing
 
   return (
     <div className="lg:rounded-r-[20px] lg:p-[20px] p-5 py-10 rounded-t-[20px] overflow-hidden overflow-y-auto bg-[#023020]">
@@ -108,9 +92,8 @@ export default async function Page({ params }) {
             <h2 className="text-gray-500">{jobData?.prodile?.location || "no location"}</h2>
           </div>
           <div className="lg:w-[18%] mr-2">
-            <button onClick={handleShare} className="p-1 px-4 text-[12px] lg:text-[20px] w-full rounded-lg text-white border border-gray-500  mr-2">
-              Share
-            </button>
+            {/* Pass jobData and currentUrl to the ShareBtn */}
+            <ShareBtn jobData={jobData} currentUrl={currentUrl} />
           </div>
         </div>
 
